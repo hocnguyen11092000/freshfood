@@ -1,19 +1,11 @@
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import {
-  AppBar,
-  Badge,
-  Button,
-  IconButton,
-  Toolbar,
-  Typography,
-} from "@mui/material";
 import { useAppSelector } from "app/hooks";
 import Cart from "features/client/cart/Cart";
 import CheckOut from "features/client/checkout/CheckOut";
+import Home from "features/client/Home/Home";
 import DetailProduct from "features/client/product/pages/detailProduct/DetailProduct";
 import ListProduct from "features/client/product/pages/listProduct/ListProduct";
 import React from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 type Props = {};
 
@@ -24,7 +16,7 @@ const UserLayout = (props: Props) => {
   cart.forEach((item) => (count += item.quantity));
   return (
     <>
-      <AppBar position="static" sx={{ background: "#349eff" }}>
+      {/* <AppBar position="static" sx={{ background: "#349eff" }}>
         <Toolbar sx={{ paddingLeft: "0 !important" }}>
           <IconButton
             size="large"
@@ -57,11 +49,13 @@ const UserLayout = (props: Props) => {
             </Link>
           </Button>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
+      {/* <Header></Header> */}
       <Routes>
         {/* <Route element={<ProtectedRoute></ProtectedRoute>}> */}
         {/* product */}
-        <Route path="/" element={<ListProduct></ListProduct>}></Route>
+        <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/shop" element={<ListProduct></ListProduct>}></Route>
         <Route path="/checkout" element={<CheckOut></CheckOut>}></Route>
         <Route
           path="/product/:id"

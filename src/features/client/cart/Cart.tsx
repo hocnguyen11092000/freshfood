@@ -1,4 +1,5 @@
 import { useAppSelector } from "app/hooks";
+import Header from "components/Common/header/Header";
 import Table from "components/Common/table/Table";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -28,22 +29,27 @@ const Cart = (props: Props) => {
   };
 
   return (
-    <div className="cart-page">
-      <h2 className="cart-page__heading">Cart Page</h2>
-      {cartItems.length <= 0 ? (
-        <h3 style={{ textAlign: "center" }}>Cart is empty...</h3>
-      ) : (
-        <>
-          <Table head={head} dataCart={cartItems}></Table>
-          <div className="cart-page__total">
-            <span>{itemsPrice}đ</span>
-          </div>
-          <div className="cart-page__submit">
-            <button onClick={() => handleCheckOut()}>Check out</button>
-          </div>
-        </>
-      )}
-    </div>
+    <>
+      <Header></Header>
+      <div className="cart-banner">
+        <span>Cart Page</span>
+      </div>
+      <div className="cart-page">
+        {cartItems.length <= 0 ? (
+          <h3 style={{ textAlign: "center" }}>Cart is empty...</h3>
+        ) : (
+          <>
+            <Table head={head} dataCart={cartItems}></Table>
+            <div className="cart-page__total">
+              <span>{itemsPrice}đ</span>
+            </div>
+            <div className="cart-page__submit">
+              <button onClick={() => handleCheckOut()}>Check out</button>
+            </div>
+          </>
+        )}
+      </div>
+    </>
   );
 };
 

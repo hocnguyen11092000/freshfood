@@ -9,6 +9,7 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   control: Control<any>;
   label?: string;
   setValue?: any;
+  width?: number | string;
 }
 
 export function QuantityField({
@@ -18,6 +19,7 @@ export function QuantityField({
   type,
   placeholder,
   setValue,
+  width,
 }: InputFieldProps) {
   const {
     field: { value, onChange, onBlur, ref },
@@ -53,6 +55,7 @@ export function QuantityField({
             name={name}
             value={value}
             type={type}
+            style={{ width: width + "px" }}
           />
           <IconButton
             onClick={() =>

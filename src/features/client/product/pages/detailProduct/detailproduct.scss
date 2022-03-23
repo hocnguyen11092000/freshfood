@@ -4,7 +4,7 @@
   background-color: rgb(240, 240, 240);
   height: auto;
   min-height: 100vh;
-  padding: 20px;
+  padding: 20px 100px 20px 100px;
 
   &-description {
     margin-top: 20px;
@@ -29,9 +29,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    &-sub-img {
+      border: 1px solid #ccc;
+      width: 15%;
+      margin-right: 20px;
+      cursor: pointer;
+
+      &.active {
+        border: 3px solid #97ae76;
+      }
+    }
   }
 
   &__right {
+    &-shortDescrpition {
+      & h3 {
+        margin: 20px 0 20px 0;
+      }
+
+      & p {
+        font-size: 0.9rem;
+        line-height: 1.2;
+        margin-bottom: 20px;
+      }
+    }
+
     &-quantity-form {
       &-add-cart {
         border: none;
@@ -49,7 +72,7 @@
     &-price {
       margin: 10px 0;
       display: inline-block;
-      font-size: 1.5rem;
+      font-size: 1rem;
 
       &-discount {
         font-weight: 500;
@@ -65,7 +88,7 @@
     }
 
     &-name {
-      font-size: 1.5rem;
+      font-size: 1rem;
       margin-top: 20px;
     }
   }

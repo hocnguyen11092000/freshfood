@@ -1,5 +1,6 @@
 import { Box, Grid, Pagination, Paper, Stack, Typography } from "@mui/material";
 import productApi from "api/productApi";
+import Header from "components/Common/header/Header";
 import { descData } from "features/admin/Home/pages/Home";
 import Category from "features/client/product/components/filter/category/Category";
 import SearchProduct, {
@@ -17,6 +18,7 @@ type Props = {};
 
 const ListProduct = (props: Props) => {
   const [page, setPage] = React.useState<number>(1);
+
   const [filter, setFilter] = useState<any>({
     page,
     keyword: "",
@@ -84,63 +86,65 @@ const ListProduct = (props: Props) => {
   };
 
   return (
-    <div
-      style={{
-        backgroundColor: "rgb(240, 240, 240)",
-        margin: "0",
-        padding: "0",
-      }}
-      className="wrapper-product"
-    >
-      <Box className="list-product">
-        <Grid container spacing={1}>
-          <Grid item md={3} sm={12} xs={12}>
-            <Paper elevation={0} sx={{ padding: "20px" }}>
-              <div onClick={handleResetFilter} className="reset">
-                All product
-              </div>
-              <SearchProduct onSubmit={handleSubmit}></SearchProduct>
-              <Typography variant="h5" component="h2">
-                Category
-              </Typography>
-              <Category
-                isChoosed={filter.cat}
-                onChange={handleChangeCategory}
-              ></Category>
-              <Typography variant="h5" component="h2">
-                Price
-              </Typography>
-              <Price onSubmit={handlePriceChange}></Price>
-            </Paper>
+    <>
+      <Header></Header>
+      <div
+        style={{
+          backgroundColor: "rgb(240, 240, 240)",
+          margin: "0",
+          padding: "0",
+        }}
+        className="wrapper-product"
+      >
+        <Box className="list-product">
+          <Grid container spacing={1}>
+            <Grid item md={3} sm={12} xs={12}>
+              <Paper elevation={0} sx={{ padding: "20px" }}>
+                <div onClick={handleResetFilter} className="reset">
+                  All product
+                </div>
+                <SearchProduct onSubmit={handleSubmit}></SearchProduct>
+                <Typography variant="h6" component="h6">
+                  Category
+                </Typography>
+                <Category
+                  isChoosed={filter.cat}
+                  onChange={handleChangeCategory}
+                ></Category>
+                <Typography variant="h6" component="h6">
+                  Price
+                </Typography>
+                <Price onSubmit={handlePriceChange}></Price>
+              </Paper>
+            </Grid>
+            <Grid item md={9} sm={12} xs={12}>
+              <Paper elevation={0} sx={{ padding: "20px" }}>
+                <Grid container>
+                  {isLoading && <ProductSkelation></ProductSkelation>}
+                  {data &&
+                    dataProducts.map((item: Product, index: number) => {
+                      return (
+                        <Grid item xs={12} sm={12} md={3} key={index}>
+                          <ProductItem item={item}></ProductItem>
+                        </Grid>
+                      );
+                    })}
+                </Grid>
+                <div className="pagination" style={{ marginTop: "0" }}>
+                  <Stack spacing={2}>
+                    <Pagination
+                      count={count}
+                      page={page}
+                      onChange={handleChange}
+                    />
+                  </Stack>
+                </div>
+              </Paper>
+            </Grid>
           </Grid>
-          <Grid item md={9} sm={12} xs={12}>
-            <Paper elevation={0} sx={{ padding: "20px" }}>
-              <Grid container>
-                {isLoading && <ProductSkelation></ProductSkelation>}
-                {data &&
-                  dataProducts.map((item: Product, index: number) => {
-                    return (
-                      <Grid item xs={12} sm={12} md={3} key={index}>
-                        <ProductItem item={item}></ProductItem>
-                      </Grid>
-                    );
-                  })}
-              </Grid>
-              <div className="pagination" style={{ marginTop: "0" }}>
-                <Stack spacing={2}>
-                  <Pagination
-                    count={count}
-                    page={page}
-                    onChange={handleChange}
-                    color="primary"
-                  />
-                </Stack>
-              </div>
-            </Paper>
-          </Grid>
-        </Grid>
-      </Box>
-    </div>
+        </Box>
+      </div>
+    </>
   );
 };
 

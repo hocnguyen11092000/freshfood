@@ -1,6 +1,7 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import orderApi from "api/orderApi";
 import { useAppDispatch } from "app/hooks";
+import Header from "components/Common/header/Header";
 import Popup from "components/Common/popup/Popup";
 import { socketAcions } from "features/socket/socketSlice";
 import Cookies from "js-cookie";
@@ -75,6 +76,7 @@ const CheckOut = (props: Props) => {
 
   return (
     <>
+      <Header></Header>
       <div className="check-out">
         <Grid container spacing={2}>
           <Grid item xs={12} md={7}>

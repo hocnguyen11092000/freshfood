@@ -1,0 +1,42 @@
+.contact {
+  margin-top: 50px;
+  height: 220px;
+  display: flex;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  &__imgBox {
+    width: calc(100% / 4);
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    & button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #97ae76;
+      z-index: 1;
+      color: #fff;
+      border: none;
+      outline: none;
+      padding: 16px 28px;
+      border-radius: 20px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  }
+}

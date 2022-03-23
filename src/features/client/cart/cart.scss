@@ -32,3 +32,43 @@
     }
   }
 }
+
+.cart-banner {
+  background: url("https://new-organic-shop.netlify.app/static/media/cart-page-banner.f11cd6f22eaba2b32227.jpg");
+  width: 100%;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  object-fit: cover;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  & span {
+    font-size: 1.5rem;
+    color: #fff;
+    z-index: 1;
+    word-spacing: 5px;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #fff;
+    }
+  }
+}
