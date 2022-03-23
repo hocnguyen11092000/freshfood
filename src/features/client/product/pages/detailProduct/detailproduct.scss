@@ -13,6 +13,11 @@
     word-spacing: 2px;
     text-align: left;
 
+    & img {
+      max-width: 100%;
+      object-fit: cover;
+    }
+
     & figure {
       text-align: center;
       margin: 10px 0;

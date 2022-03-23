@@ -29,7 +29,7 @@ const Price = (props: Props) => {
       />
       <span>100</span>
       <div style={{ fontSize: "0.9rem", marginTop: "10px" }}>
-        price littel than equal
+        price below equal
         <span style={{ color: "#16a34a" }}> {valueprice}.000đ</span>
       </div>
     </div>

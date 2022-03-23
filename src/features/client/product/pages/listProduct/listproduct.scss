@@ -1,6 +1,11 @@
 @use "../../../../../scss/" as *;
 .list-product {
   padding: 20px;
+
+  &__filter {
+    font-size: 0.9rem;
+    color: rgb(22, 163, 74);
+  }
 }
 
 .wrapper-product {

@@ -3,7 +3,8 @@ import Contact from "components/Common/contact/Contact";
 import Footer from "components/Common/footer/Footer";
 import Header from "components/Common/header/Header";
 import { ListResponse, Product } from "models";
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import HomeSkeleton from "./components/HomeSkeleton";
 import { useQuery } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
 import "./home.scss";
@@ -12,6 +13,22 @@ type Props = {};
 
 const Home = (props: Props) => {
   const navigate = useNavigate();
+  const headerRef = useRef<any>();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        headerRef.current?.classList.add("active");
+      } else {
+        headerRef.current?.classList.remove("active");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const fetchProductList = async (filter: any) => {
     const res: ListResponse<Product> = await productApi.getAll(filter);
@@ -29,6 +46,7 @@ const Home = (props: Props) => {
   return (
     <>
       <Header
+        ref={headerRef}
         height="100vh"
         bg="https://new-organic-shop.netlify.app/static/media/hero.823fc1bf37a46977f90e.jpg"
       ></Header>
@@ -77,36 +95,35 @@ const Home = (props: Props) => {
           </div>
         </div>
       </div>
-      {isLoading ? (
-        "Loading"
-      ) : (
-        <div className="newProduct">
-          <div className="newProduct__heading">New Products</div>
-          <div className="newProduct__wrapper">
-            {data &&
-              data.products.map((item: Product) => {
-                return (
-                  <>
-                    <div
-                      className="newProduct__wrapper-block"
-                      onClick={() => handleNavigate(item._id)}
-                    >
-                      <div className="newProduct__wrapper-block-img">
-                        <img src={item.images[0].url} alt="" />
-                      </div>
-                      <div className="newProduct__wrapper-block-name">
-                        {item.name}
-                      </div>
-                      <div className="newProduct__wrapper-block-price">
-                        {item.price}.000đ/kg
-                      </div>
+
+      <div className="newProduct">
+        <div className="newProduct__heading">New Products</div>
+        <div className="newProduct__wrapper">
+          {isLoading && <HomeSkeleton></HomeSkeleton>}
+          {data &&
+            data.products.map((item: Product) => {
+              return (
+                <>
+                  <div
+                    key={item._id}
+                    className="newProduct__wrapper-block"
+                    onClick={() => handleNavigate(item._id)}
+                  >
+                    <div className="newProduct__wrapper-block-img">
+                      <img src={item.images[0].url} alt="" />
                     </div>
-                  </>
-                );
-              })}
-          </div>
+                    <div className="newProduct__wrapper-block-name">
+                      {item.name}
+                    </div>
+                    <div className="newProduct__wrapper-block-price">
+                      {item.price}.000đ/kg
+                    </div>
+                  </div>
+                </>
+              );
+            })}
         </div>
-      )}
+      </div>
       <Contact></Contact>
       <Footer></Footer>
     </>

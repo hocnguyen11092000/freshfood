@@ -1,6 +1,7 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import orderApi from "api/orderApi";
 import { useAppDispatch } from "app/hooks";
+import Footer from "components/Common/footer/Footer";
 import Header from "components/Common/header/Header";
 import Popup from "components/Common/popup/Popup";
 import { socketAcions } from "features/socket/socketSlice";
@@ -157,6 +158,7 @@ const CheckOut = (props: Props) => {
           </div>
         </Popup>
       )}
+      <Footer bg="#f0f0f0"></Footer>
     </>
   );
 };

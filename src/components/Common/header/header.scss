@@ -1,10 +1,19 @@
 .header {
-  padding: 20px 100px;
-
   &__container {
+    padding: 20px 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: 0.5s ease;
+
+    &.active {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #dbf8e6 !important;
+      height: 60px !important;
+      z-index: 10;
+    }
 
     &-logo {
       font-size: 1.5rem;

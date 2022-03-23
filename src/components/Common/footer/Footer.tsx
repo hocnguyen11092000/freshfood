@@ -3,9 +3,13 @@ import "./footer.scss";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
-type Props = {};
+type Props = {
+  bg?: string;
+};
 
 const Footer = (props: Props) => {
+  const { bg } = props;
+
   const footerInfo = [
     {
       id: 1,
@@ -24,7 +28,7 @@ const Footer = (props: Props) => {
     },
   ];
   return (
-    <div className="footer">
+    <div className="footer" style={bg ? { backgroundColor: `${bg}` } : {}}>
       <div className="footer__block">
         <div className="footer__block-heading">Fresh food</div>
         <ul className="footer__block-list">

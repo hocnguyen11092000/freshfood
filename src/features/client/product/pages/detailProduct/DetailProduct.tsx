@@ -3,19 +3,38 @@ import productApi from "api/productApi";
 import { useAppDispatch, useAppSelector } from "app/hooks";
 import { cartActions } from "features/client/cart/cartSlice";
 import { Images, ListResponse, Product } from "models";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { QuantityField } from "../../../../../components/form-controls/QuantityField";
 import "./detailproduct.scss";
 import Header from "../../../../../components/Common/header/Header";
+import Footer from "components/Common/footer/Footer";
 type Props = {};
 
 const DetailProduct = (props: Props) => {
   const dispatch = useAppDispatch();
   const [imgActive, setImgActive] = useState<number>(0);
   const imgRef = useRef<any>();
+
+  const headerRef = useRef<any>();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        headerRef.current?.classList.add("active");
+      } else {
+        headerRef.current?.classList.remove("active");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const {
     control,
@@ -102,7 +121,7 @@ const DetailProduct = (props: Props) => {
 
   return (
     <>
-      <Header></Header>
+      <Header ref={headerRef}></Header>
       <div className="detail-product">
         <Grid container spacing={1}>
           <Grid item sm={6}>
@@ -205,12 +224,24 @@ const DetailProduct = (props: Props) => {
             </Paper>
           </Grid>
           <h2 style={{ margin: "20px 0 10px 8px" }}>Product description</h2>
-          <div
-            className="detail-product-description"
-            dangerouslySetInnerHTML={{ __html: data?.product.description }}
-          ></div>
+          <Grid container>
+            <Grid item sm={12} md={12}>
+              <Paper
+                sx={{ padding: "10px 8px 20px 8px", marginLeft: "8px" }}
+                elevation={0}
+              >
+                <div
+                  className="detail-product-description"
+                  dangerouslySetInnerHTML={{
+                    __html: data?.product.description,
+                  }}
+                ></div>
+              </Paper>
+            </Grid>
+          </Grid>
         </Grid>
       </div>
+      <Footer bg="#f0f0f0"></Footer>
     </>
   );
 };

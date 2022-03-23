@@ -1,4 +1,5 @@
 import { useAppSelector } from "app/hooks";
+import Footer from "components/Common/footer/Footer";
 import Header from "components/Common/header/Header";
 import Table from "components/Common/table/Table";
 import React from "react";
@@ -49,6 +50,7 @@ const Cart = (props: Props) => {
           </>
         )}
       </div>
+      <Footer bg="#f0f0f0"></Footer>
     </>
   );
 };

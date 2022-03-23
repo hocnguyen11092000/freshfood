@@ -116,6 +116,31 @@ const ListProduct = (props: Props) => {
                 </Typography>
                 <Price onSubmit={handlePriceChange}></Price>
               </Paper>
+              <Paper elevation={0} sx={{ padding: "20px", marginTop: "10px" }}>
+                <Typography variant="h6" component="h6">
+                  Filters is applied:
+                  <div style={{ fontSize: "0.9rem" }}>
+                    category:
+                    <span className="list-product__filter">
+                      {filter.cat !== "" ? ` ${filter.cat}` : " all"}
+                    </span>
+                  </div>
+                  <div style={{ fontSize: "0.9rem" }}>
+                    price below equal:
+                    <span className="list-product__filter">
+                      {filter["price[lte]"] !== undefined
+                        ? ` ${filter["price[lte]"]}.000đ`
+                        : " all"}
+                    </span>
+                  </div>
+                  <div style={{ fontSize: "0.9rem" }}>
+                    page:
+                    <span className="list-product__filter">
+                      {` ${filter.page}`}
+                    </span>
+                  </div>
+                </Typography>
+              </Paper>
             </Grid>
             <Grid item md={9} sm={12} xs={12}>
               <Paper elevation={0} sx={{ padding: "20px" }}>
