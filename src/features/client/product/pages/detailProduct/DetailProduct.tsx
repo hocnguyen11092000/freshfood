@@ -11,10 +11,12 @@ import { QuantityField } from "../../../../../components/form-controls/QuantityF
 import "./detailproduct.scss";
 import Header from "../../../../../components/Common/header/Header";
 import Footer from "components/Common/footer/Footer";
+import { getBrowserWidth } from "features/client/Home/components/HomeSkeleton";
 type Props = {};
 
 const DetailProduct = (props: Props) => {
   const dispatch = useAppDispatch();
+  const device = getBrowserWidth();
   const [imgActive, setImgActive] = useState<number>(0);
   const imgRef = useRef<any>();
 
@@ -140,7 +142,7 @@ const DetailProduct = (props: Props) => {
                           key={index}
                           src={item.url}
                           alt=""
-                          width="100%"
+                          width={device === "xs" ? "100%" : "40%"}
                           ref={imgRef}
                           style={{
                             paddingLeft: "30px",
