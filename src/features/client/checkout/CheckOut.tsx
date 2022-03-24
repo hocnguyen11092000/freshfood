@@ -6,11 +6,11 @@ import Header from "components/Common/header/Header";
 import Popup from "components/Common/popup/Popup";
 import { socketAcions } from "features/socket/socketSlice";
 import Cookies from "js-cookie";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import io from "socket.io-client";
 import { cartActions } from "../cart/cartSlice";
+import { getBrowserWidth } from "../Home/components/HomeSkeleton";
 import "./checkout.scss";
 import ShippingForm from "./components/ShippingForm";
 
@@ -19,6 +19,7 @@ type Props = {
 };
 
 const CheckOut = (props: Props) => {
+  const device = getBrowserWidth();
   // const [socket, setSocket] = useState<any>();
   const navigate = useNavigate();
   const [checkoutSuccess, setCheckOutSuccess] = useState<boolean>(false);

@@ -1,5 +1,6 @@
 import { CircularProgress } from "@mui/material";
 import { InputField } from "components/form-controls/InputFields";
+import { getBrowserWidth } from "features/client/Home/components/HomeSkeleton";
 import { Address } from "models";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -17,6 +18,7 @@ type Props = {
 
 const ShippingForm = (props: Props) => {
   const { onSubmit } = props;
+  const device = getBrowserWidth();
 
   const {
     control,
@@ -52,7 +54,7 @@ const ShippingForm = (props: Props) => {
                 Name:
               </label>
               <InputField
-                mWidth="350px"
+                mWidth={device === "xs" ? "300px" : "350px"}
                 id="name"
                 name="name"
                 control={control}
@@ -67,7 +69,7 @@ const ShippingForm = (props: Props) => {
                 Address:
               </label>
               <InputField
-                mWidth="350px"
+                mWidth={device === "xs" ? "300px" : "350px"}
                 id="address"
                 name="address"
                 control={control}
@@ -82,7 +84,7 @@ const ShippingForm = (props: Props) => {
                 Phone number:
               </label>
               <InputField
-                mWidth="350px"
+                mWidth={device === "xs" ? "300px" : "350px"}
                 id="phoneNo"
                 name="phoneNo"
                 control={control}
@@ -97,7 +99,7 @@ const ShippingForm = (props: Props) => {
                 Gender:
               </label>
               <InputField
-                mWidth="350px"
+                mWidth={device === "xs" ? "300px" : "350px"}
                 id="gender"
                 name="gender"
                 control={control}
