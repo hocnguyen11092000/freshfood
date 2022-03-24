@@ -170,7 +170,7 @@ const Table = (props: Props) => {
       {loadingQtt ? (
         <LinearProgress />
       ) : (
-        <div className="table">
+        <div className="table" style={{ overflowX: "auto" }}>
           <Popup active={popup}>
             <h5 className="popup__heading">Update status</h5>
             <div className="popup__form">

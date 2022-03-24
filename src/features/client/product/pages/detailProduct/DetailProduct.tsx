@@ -140,8 +140,11 @@ const DetailProduct = (props: Props) => {
                           key={index}
                           src={item.url}
                           alt=""
-                          width="40%"
+                          width="100%"
                           ref={imgRef}
+                          style={{
+                            paddingLeft: "30px",
+                          }}
                         />
                       );
                     })}

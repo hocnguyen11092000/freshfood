@@ -75,7 +75,6 @@ const Home = (props: Props) => {
                     alt=""
                   />
                 </div>
-
                 <span>Fruit</span>
               </li>
             </ul>

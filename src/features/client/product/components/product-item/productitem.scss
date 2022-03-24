@@ -12,7 +12,20 @@
     font-size: 1rem;
   }
 
+  &__img {
+    width: 80% !important;
+    object-fit: cover;
+  }
+
   &__name {
     font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .product-item {
+    &__img {
+      width: 60% !important;
+    }
   }
 }

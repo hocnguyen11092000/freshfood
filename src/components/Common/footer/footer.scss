@@ -73,3 +73,19 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .footer {
+    padding: 20px;
+    flex-direction: column;
+
+    &__block {
+      width: auto;
+      margin-top: 20px;
+
+      &-subscribe {
+        margin: 0;
+      }
+    }
+  }
+}

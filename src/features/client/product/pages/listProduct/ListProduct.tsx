@@ -142,7 +142,7 @@ const ListProduct = (props: Props) => {
                 </Typography>
               </Paper>
             </Grid>
-            <Grid item md={9} sm={12} xs={12}>
+            <Grid item md={9} sm={12}>
               <Paper elevation={0} sx={{ padding: "20px" }}>
                 <Grid container>
                   {isLoading && <ProductSkelation></ProductSkelation>}
@@ -156,13 +156,17 @@ const ListProduct = (props: Props) => {
                     })}
                 </Grid>
                 <div className="pagination" style={{ marginTop: "0" }}>
-                  <Stack spacing={2}>
-                    <Pagination
-                      count={count}
-                      page={page}
-                      onChange={handleChange}
-                    />
-                  </Stack>
+                  <Grid container>
+                    <Grid item sm={12}>
+                      <Stack spacing={2} sx={{ width: "100%" }}>
+                        <Pagination
+                          count={count}
+                          page={page}
+                          onChange={handleChange}
+                        />
+                      </Stack>
+                    </Grid>
+                  </Grid>
                 </div>
               </Paper>
             </Grid>

@@ -156,3 +156,45 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .category {
+    margin: 10px 50px;
+
+    &__heading {
+      &::after {
+        left: 40%;
+        width: 60px;
+      }
+    }
+
+    &__wrapper {
+      flex-direction: column;
+
+      &-block {
+        width: auto;
+        margin: 0;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .newProduct {
+    margin: 0 20px 50px 20px;
+
+    &__heading {
+      &::after {
+        left: 40%;
+        width: 60px;
+      }
+    }
+
+    &__wrapper {
+      flex-direction: column;
+
+      &-block {
+        width: auto;
+      }
+    }
+  }
+}
