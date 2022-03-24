@@ -19,13 +19,13 @@ type Props = {
 };
 
 const CheckOut = (props: Props) => {
-  const [socket, setSocket] = useState<any>();
+  // const [socket, setSocket] = useState<any>();
   const navigate = useNavigate();
   const [checkoutSuccess, setCheckOutSuccess] = useState<boolean>(false);
 
-  useEffect(() => {
-    setSocket(io("http://localhost:5000"));
-  }, []);
+  // useEffect(() => {
+  //   setSocket(io("http://localhost:5000"));
+  // }, []);
 
   const { state } = useLocation() as any;
   const dispatch = useAppDispatch();
@@ -62,13 +62,14 @@ const CheckOut = (props: Props) => {
       dispatch(socketAcions.setCheck());
 
       setCheckOutSuccess(true);
-      socket.emit("sendOrder", res.order);
-      localStorage.setItem("socket", Math.random().toString());
+      // socket.emit("sendOrder", res.order);
+      // localStorage.setItem("socket", Math.random().toString());
     } catch (error: any) {
       const statusCode = error.response.status;
 
       if (statusCode == "401") {
-        navigate("/admin/login");
+        // navigate("/admin/login");
+        toast.error("please login to checkout");
       } else {
         toast.error("fail to add order");
       }

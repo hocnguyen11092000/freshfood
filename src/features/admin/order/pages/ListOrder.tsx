@@ -5,7 +5,6 @@ import { descData } from "features/admin/Home/pages/Home";
 import { Order } from "models/order";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import io from "socket.io-client";
 import "./listorder.scss";
 
 type Props = {
@@ -30,21 +29,21 @@ const head = [
 const ListOrder = (props: Props) => {
   const { onChangeStatus, loading, mg } = props;
   const [orderLoading, setOrderLoading] = useState<boolean>(false);
-  const [socket, setSocket] = useState<any>();
+  // const [socket, setSocket] = useState<any>();
 
-  useEffect(() => {
-    setSocket(io("http://localhost:5000"));
-  }, []);
+  // useEffect(() => {
+  //   setSocket(io("http://localhost:5000"));
+  // }, []);
 
   const [order, setOrder] = useState<Order[]>();
   const [newOrder, setNewOrder] = useState<string>("");
   const [render, setRender] = useState<boolean>(false);
 
-  socket?.on("server", (data: Order) => {
-    if (data._id != newOrder) {
-      setNewOrder(data._id);
-    }
-  });
+  // socket?.on("server", (data: Order) => {
+  //   if (data._id != newOrder) {
+  //     setNewOrder(data._id);
+  //   }
+  // });
 
   useEffect(() => {
     (async () => {
