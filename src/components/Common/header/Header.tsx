@@ -2,6 +2,7 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { useAppSelector } from "app/hooks";
+import MenuIcon from "@mui/icons-material/Menu";
 import React, { forwardRef, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./header.scss";
@@ -9,12 +10,19 @@ type Props = {
   height?: string;
   bg?: string;
   ref?: any;
+  onChange?: () => void;
 };
 
 const Header = (props: Props, ref: any) => {
-  const { height, bg } = props;
+  const { height, bg, onChange } = props;
   const cart = useAppSelector((state) => state.cart.cartItems);
   let count = 0;
+
+  const handleShowMobileSidebar = () => {
+    if (onChange) {
+      onChange();
+    }
+  };
 
   cart.forEach((item) => (count += item.quantity));
   return (
@@ -41,6 +49,12 @@ const Header = (props: Props, ref: any) => {
           <li>Blog</li>
           <li>Contact</li>
         </ul>
+        <div
+          className="header__container-mobile-icon"
+          onClick={handleShowMobileSidebar}
+        >
+          <MenuIcon></MenuIcon>
+        </div>
         <div className="header__container-groupIcon">
           <span className="header__container-groupIcon-icon">
             <SearchIcon></SearchIcon>

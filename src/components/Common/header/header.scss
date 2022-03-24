@@ -20,6 +20,10 @@
       font-weight: 600;
     }
 
+    &-mobile-icon {
+      display: none;
+    }
+
     &-list {
       display: flex;
 
@@ -61,6 +65,23 @@
   .header {
     &__container {
       padding: 10px 20px;
+
+      &-logo {
+        font-size: 1rem;
+      }
+
+      &-list {
+        display: none;
+      }
+
+      &-groupIcon {
+        display: none;
+      }
+
+      &-mobile-icon {
+        display: inline-block;
+        cursor: pointer;
+      }
     }
   }
 }

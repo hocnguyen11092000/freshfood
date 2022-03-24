@@ -3,16 +3,19 @@ import Contact from "components/Common/contact/Contact";
 import Footer from "components/Common/footer/Footer";
 import Header from "components/Common/header/Header";
 import { ListResponse, Product } from "models";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+
 import HomeSkeleton from "./components/HomeSkeleton";
 import { useQuery } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
 import "./home.scss";
+import SidebarMobile from "components/Common/sidebarMobile/SidebarMobile";
 
 type Props = {};
 
 const Home = (props: Props) => {
   const navigate = useNavigate();
+  const [showMobile, setShowMobile] = useState<number>(300);
   const headerRef = useRef<any>();
 
   useEffect(() => {
@@ -43,9 +46,18 @@ const Home = (props: Props) => {
 
   if (error) return <div>error</div>;
 
+  const handleChangeMobileSidebar = () => {
+    setShowMobile(0);
+  };
+
+  const handleCloseMobileSidebar = () => {
+    setShowMobile(300);
+  };
+
   return (
     <>
       <Header
+        onChange={handleChangeMobileSidebar}
         ref={headerRef}
         height="100vh"
         bg="https://new-organic-shop.netlify.app/static/media/hero.823fc1bf37a46977f90e.jpg"
@@ -125,6 +137,10 @@ const Home = (props: Props) => {
       </div>
       <Contact></Contact>
       <Footer></Footer>
+      <SidebarMobile
+        onClose={handleCloseMobileSidebar}
+        show={showMobile}
+      ></SidebarMobile>
     </>
   );
 };

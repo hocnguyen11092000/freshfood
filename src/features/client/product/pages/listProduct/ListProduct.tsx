@@ -1,6 +1,7 @@
 import { Box, Grid, Pagination, Paper, Stack, Typography } from "@mui/material";
 import productApi from "api/productApi";
 import Header from "components/Common/header/Header";
+import SidebarMobile from "components/Common/sidebarMobile/SidebarMobile";
 import { descData } from "features/admin/Home/pages/Home";
 import Category from "features/client/product/components/filter/category/Category";
 import SearchProduct, {
@@ -17,6 +18,7 @@ import "./listproduct.scss";
 type Props = {};
 
 const ListProduct = (props: Props) => {
+  const [showMobile, setShowMobile] = useState<number>(300);
   const [page, setPage] = React.useState<number>(1);
 
   const [filter, setFilter] = useState<any>({
@@ -85,9 +87,17 @@ const ListProduct = (props: Props) => {
     });
   };
 
+  const handleChangeMobileSidebar = () => {
+    setShowMobile(0);
+  };
+
+  const handleCloseMobileSidebar = () => {
+    setShowMobile(300);
+  };
+
   return (
     <>
-      <Header></Header>
+      <Header onChange={handleChangeMobileSidebar}></Header>
       <div
         style={{
           backgroundColor: "rgb(240, 240, 240)",
@@ -169,6 +179,10 @@ const ListProduct = (props: Props) => {
           </Grid>
         </Box>
       </div>
+      <SidebarMobile
+        onClose={handleCloseMobileSidebar}
+        show={showMobile}
+      ></SidebarMobile>
     </>
   );
 };

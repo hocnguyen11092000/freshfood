@@ -12,9 +12,11 @@ import "./detailproduct.scss";
 import Header from "../../../../../components/Common/header/Header";
 import Footer from "components/Common/footer/Footer";
 import { getBrowserWidth } from "features/client/Home/components/HomeSkeleton";
+import SidebarMobile from "components/Common/sidebarMobile/SidebarMobile";
 type Props = {};
 
 const DetailProduct = (props: Props) => {
+  const [showMobile, setShowMobile] = useState<number>(300);
   const dispatch = useAppDispatch();
   const device = getBrowserWidth();
   const [imgActive, setImgActive] = useState<number>(0);
@@ -121,9 +123,17 @@ const DetailProduct = (props: Props) => {
     }
   };
 
+  const handleChangeMobileSidebar = () => {
+    setShowMobile(0);
+  };
+
+  const handleCloseMobileSidebar = () => {
+    setShowMobile(300);
+  };
+
   return (
     <>
-      <Header ref={headerRef}></Header>
+      <Header onChange={handleChangeMobileSidebar} ref={headerRef}></Header>
       <div className="detail-product">
         <Grid container spacing={1}>
           <Grid item sm={6}>
@@ -247,6 +257,10 @@ const DetailProduct = (props: Props) => {
         </Grid>
       </div>
       <Footer bg="#f0f0f0"></Footer>
+      <SidebarMobile
+        onClose={handleCloseMobileSidebar}
+        show={showMobile}
+      ></SidebarMobile>
     </>
   );
 };

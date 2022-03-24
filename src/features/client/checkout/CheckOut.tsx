@@ -4,6 +4,7 @@ import { useAppDispatch } from "app/hooks";
 import Footer from "components/Common/footer/Footer";
 import Header from "components/Common/header/Header";
 import Popup from "components/Common/popup/Popup";
+import SidebarMobile from "components/Common/sidebarMobile/SidebarMobile";
 import { socketAcions } from "features/socket/socketSlice";
 import Cookies from "js-cookie";
 import { useState } from "react";
@@ -20,6 +21,7 @@ type Props = {
 
 const CheckOut = (props: Props) => {
   const device = getBrowserWidth();
+  const [showMobile, setShowMobile] = useState<number>(300);
   // const [socket, setSocket] = useState<any>();
   const navigate = useNavigate();
   const [checkoutSuccess, setCheckOutSuccess] = useState<boolean>(false);
@@ -77,9 +79,17 @@ const CheckOut = (props: Props) => {
     }
   };
 
+  const handleChangeMobileSidebar = () => {
+    setShowMobile(0);
+  };
+
+  const handleCloseMobileSidebar = () => {
+    setShowMobile(300);
+  };
+
   return (
     <>
-      <Header></Header>
+      <Header onChange={handleChangeMobileSidebar}></Header>
       <div className="check-out">
         <Grid container spacing={2}>
           <Grid item xs={12} md={7}>
@@ -161,6 +171,10 @@ const CheckOut = (props: Props) => {
         </Popup>
       )}
       <Footer bg="#f0f0f0"></Footer>
+      <SidebarMobile
+        onClose={handleCloseMobileSidebar}
+        show={showMobile}
+      ></SidebarMobile>
     </>
   );
 };

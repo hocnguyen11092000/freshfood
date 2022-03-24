@@ -1,9 +1,11 @@
 import { Grid, Skeleton } from "@mui/material";
+import { getBrowserWidth } from "features/client/Home/components/HomeSkeleton";
 import React from "react";
 
 type Props = {};
 
 const ProductSkelation = (props: Props) => {
+  const device = getBrowserWidth();
   return (
     <>
       {Array.from(new Array(8)).map((_, index: number) => {
@@ -18,16 +20,16 @@ const ProductSkelation = (props: Props) => {
             >
               <Skeleton
                 variant="rectangular"
-                width={210}
+                width={device === "xs" ? 310 : 210}
                 height={200}
                 sx={{ marginBottom: "10px" }}
               />
               <Skeleton
                 variant="text"
-                width={210}
+                width={device === "xs" ? 310 : 210}
                 sx={{ marginBottom: "10px" }}
               />
-              <Skeleton variant="text" width={210} />
+              <Skeleton variant="text" width={device === "xs" ? 310 : 210} />
             </div>
           </Grid>
         );

@@ -25,7 +25,7 @@ const HomeSkeleton = (props: Props) => {
     <>
       {Array.from(new Array(8)).map((_, index: number) => {
         return (
-          <div>
+          <div key={index}>
             {/* <div className="newProduct__wrapper-block-img"> */}
             {/* <img src={item.images[0].url} alt="" /> */}
             <Skeleton
