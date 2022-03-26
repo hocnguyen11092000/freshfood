@@ -1,8 +1,10 @@
 import { Box, Grid, Pagination, Paper, Stack, Typography } from "@mui/material";
 import productApi from "api/productApi";
+import Footer from "components/Common/footer/Footer";
 import Header from "components/Common/header/Header";
 import SidebarMobile from "components/Common/sidebarMobile/SidebarMobile";
 import { descData } from "features/admin/Home/pages/Home";
+import { getBrowserWidth } from "features/client/Home/components/HomeSkeleton";
 import Category from "features/client/product/components/filter/category/Category";
 import SearchProduct, {
   SearchValue,
@@ -18,6 +20,7 @@ import "./listproduct.scss";
 type Props = {};
 
 const ListProduct = (props: Props) => {
+  const device = getBrowserWidth();
   const [showMobile, setShowMobile] = useState<number>(300);
   const [page, setPage] = React.useState<number>(1);
 
@@ -114,16 +117,12 @@ const ListProduct = (props: Props) => {
                   All product
                 </div>
                 <SearchProduct onSubmit={handleSubmit}></SearchProduct>
-                <Typography variant="h6" component="h6">
-                  Category
-                </Typography>
+                <Typography sx={{ fontWeight: "600" }}>Category</Typography>
                 <Category
                   isChoosed={filter.cat}
                   onChange={handleChangeCategory}
                 ></Category>
-                <Typography variant="h6" component="h6">
-                  Price
-                </Typography>
+                <Typography sx={{ fontWeight: "600" }}>Price</Typography>
                 <Price onSubmit={handlePriceChange}></Price>
               </Paper>
               <Paper elevation={0} sx={{ padding: "20px", marginTop: "10px" }}>
@@ -152,14 +151,14 @@ const ListProduct = (props: Props) => {
                 </Typography>
               </Paper>
             </Grid>
-            <Grid item md={9} sm={12}>
+            <Grid item md={9} sm={12} xs={12}>
               <Paper elevation={0} sx={{ padding: "20px" }}>
                 <Grid container>
                   {isLoading && <ProductSkelation></ProductSkelation>}
                   {data &&
                     dataProducts.map((item: Product, index: number) => {
                       return (
-                        <Grid item xs={12} sm={12} md={3} key={index}>
+                        <Grid item xs={12} sm={4} md={3} key={index}>
                           <ProductItem item={item}></ProductItem>
                         </Grid>
                       );
@@ -179,6 +178,7 @@ const ListProduct = (props: Props) => {
           </Grid>
         </Box>
       </div>
+      <Footer bg="#f0f0f0"></Footer>
       <SidebarMobile
         onClose={handleCloseMobileSidebar}
         show={showMobile}

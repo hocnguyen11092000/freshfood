@@ -1,6 +1,7 @@
 import { useAppSelector } from "app/hooks";
 import Cart from "features/client/cart/Cart";
 import CheckOut from "features/client/checkout/CheckOut";
+import Contact from "features/client/contact/Contact";
 import Home from "features/client/Home/Home";
 import DetailProduct from "features/client/product/pages/detailProduct/DetailProduct";
 import ListProduct from "features/client/product/pages/listProduct/ListProduct";
@@ -16,46 +17,15 @@ const UserLayout = (props: Props) => {
   cart.forEach((item) => (count += item.quantity));
   return (
     <>
-      {/* <AppBar position="static" sx={{ background: "#349eff" }}>
-        <Toolbar sx={{ paddingLeft: "0 !important" }}>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          ></IconButton>
-
-          <Typography
-            sx={{ color: "#fff", flexGrow: 1 }}
-            variant="h6"
-            component="div"
-          >
-            <Link to="/" style={{ color: "#fff" }}>
-              Orchid
-            </Link>
-          </Typography>
-
-          <Link to="/cart">
-            <IconButton sx={{ color: "#fff" }}>
-              <Badge badgeContent={count} color="error">
-                <AddShoppingCartIcon />
-              </Badge>
-            </IconButton>
-          </Link>
-          <Button color="inherit" size="small">
-            <Link to="/admin/login" style={{ color: "#fff" }}>
-              LOGIN
-            </Link>
-          </Button>
-        </Toolbar>
-      </AppBar> */}
       {/* <Header></Header> */}
       <Routes>
         {/* <Route element={<ProtectedRoute></ProtectedRoute>}> */}
         {/* product */}
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/shop" element={<ListProduct></ListProduct>}></Route>
+        {/* contact */}
+        <Route path="/contact" element={<Contact></Contact>}></Route>
+        {/* checkout */}
         <Route path="/checkout" element={<CheckOut></CheckOut>}></Route>
         <Route
           path="/product/:id"

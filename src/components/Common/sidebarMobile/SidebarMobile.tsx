@@ -33,10 +33,10 @@ const SidebarMobile = (props: Props) => {
           <Link to="/shop">Shop</Link>
         </li>
         <li>
-          <Link to="/">Blog</Link>
+          <Link to="#">Blog</Link>
         </li>
         <li>
-          <Link to="/">Contact</Link>
+          <Link to="/contact">Contact</Link>
         </li>
         <li>
           <Link to="/cart">Cart</Link>

@@ -10,26 +10,27 @@ const ProductSkelation = (props: Props) => {
     <>
       {Array.from(new Array(8)).map((_, index: number) => {
         return (
-          <Grid item xs={12} sm={12} md={3} key={index}>
+          <Grid item xs={12} sm={4} md={3} key={index}>
             <div
               style={{
                 marginBottom: "20px",
                 maxHeight: "265px",
                 height: "265px",
+                width: "100%",
               }}
             >
               <Skeleton
                 variant="rectangular"
-                width={device === "xs" ? 310 : 210}
+                width={"95%"}
                 height={200}
                 sx={{ marginBottom: "10px" }}
               />
               <Skeleton
                 variant="text"
-                width={device === "xs" ? 310 : 210}
+                width={"95%"}
                 sx={{ marginBottom: "10px" }}
               />
-              <Skeleton variant="text" width={device === "xs" ? 310 : 210} />
+              <Skeleton variant="text" width={"95%"} />
             </div>
           </Grid>
         );

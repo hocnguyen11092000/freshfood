@@ -46,8 +46,12 @@ const Header = (props: Props, ref: any) => {
           <li>
             <Link to="/shop">Shop</Link>
           </li>
-          <li>Blog</li>
-          <li>Contact</li>
+          <li>
+            <Link to="/contact">contact</Link>
+          </li>
+          <li>
+            <Link to="/blog">blog</Link>
+          </li>
         </ul>
         <div
           className="header__container-mobile-icon"

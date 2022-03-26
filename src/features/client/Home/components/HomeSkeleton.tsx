@@ -25,22 +25,23 @@ const HomeSkeleton = (props: Props) => {
     <>
       {Array.from(new Array(8)).map((_, index: number) => {
         return (
-          <div key={index}>
-            {/* <div className="newProduct__wrapper-block-img"> */}
-            {/* <img src={item.images[0].url} alt="" /> */}
+          <div key={index} className="newProduct__wrapper-block">
             <Skeleton
               variant="rectangular"
-              width={device === "xs" ? "100%" : 257.25}
-              height={240}
+              width={"100%"}
+              height={215}
               sx={{ marginBottom: "10px", borderRadius: "5px" }}
               animation="wave"
             />
+
+            {/* <img src={item.images[0].url} alt="" /> */}
+
             {/* </div> */}
             {/* <div className="newProduct__wrapper-block-name"> */}
             {/* {item.name} */}
             <Skeleton
               variant="rectangular"
-              width={device === "xs" ? "100%" : 257.25}
+              width="100%"
               height={33}
               sx={{ marginBottom: "10px", borderRadius: "5px" }}
               animation="wave"
@@ -50,9 +51,9 @@ const HomeSkeleton = (props: Props) => {
             {/* {item.price}.000đ/kg */}
             <Skeleton
               variant="rectangular"
-              width={device === "xs" ? "100%" : 257.25}
+              width="100%"
               height={23}
-              sx={{ marginBottom: "30px", borderRadius: "5px" }}
+              sx={{ borderRadius: "5px" }}
               animation="wave"
             />
           </div>

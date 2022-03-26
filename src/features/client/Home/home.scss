@@ -193,7 +193,58 @@
       flex-direction: column;
 
       &-block {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .category {
+    margin: 10px 50px;
+
+    &__heading {
+      &::after {
+        left: 47%;
+        width: 60px;
+      }
+    }
+
+    &__wrapper {
+      flex-direction: column;
+
+      &-block {
         width: auto;
+        margin: 0;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .newProduct {
+    margin: 0 20px 50px 20px;
+
+    &__heading {
+      &::after {
+        left: 47%;
+        width: 60px;
+      }
+    }
+
+    &__wrapper {
+      justify-content: flex-start;
+
+      &-block {
+        width: calc((100% / 3) - 10px * 2);
+
+        &:nth-child(3n + 1) {
+          margin-left: 0;
+        }
+
+        &:nth-child(4n + 1):not(&:nth-child(1)) {
+          margin-left: 10px;
+        }
       }
     }
   }
