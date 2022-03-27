@@ -97,6 +97,25 @@ const Sidebar = () => {
               </span>
             </div>
           </li>
+          <li
+            className={`sidebar__menu-item ${
+              pathname.includes("blog") ? "active" : ""
+            }`}
+            onClick={() => handleActive(orderRef)}
+          >
+            <div className="sidebar__menu-item-heading">
+              <FolderOpenIcon></FolderOpenIcon>
+              <span>Blog</span>
+            </div>
+            <div ref={orderRef} className="sidebar__menu-item-product">
+              <span className="sidebar__menu-item-product-sub-product">
+                <Link to="/admin/blog-list">List Blog</Link>
+              </span>
+              <span className="sidebar__menu-item-product-sub-product">
+                <Link to="/admin/add-edit-blog">Add Blog</Link>
+              </span>
+            </div>
+          </li>
         </ul>
       </div>
     </div>

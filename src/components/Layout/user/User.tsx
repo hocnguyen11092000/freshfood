@@ -8,6 +8,7 @@ import ListProduct from "features/client/product/pages/listProduct/ListProduct";
 import Blog from "features/client/blog/Blog";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import DetailBlog from "features/client/blog/pages/DetailBlog";
 
 type Props = {};
 
@@ -28,6 +29,7 @@ const UserLayout = (props: Props) => {
         <Route path="/contact" element={<Contact></Contact>}></Route>
         {/* blog */}
         <Route path="/blog" element={<Blog></Blog>}></Route>
+        <Route path="/blog/:id" element={<DetailBlog></DetailBlog>}></Route>
         {/* checkout */}
         <Route path="/checkout" element={<CheckOut></CheckOut>}></Route>
         <Route

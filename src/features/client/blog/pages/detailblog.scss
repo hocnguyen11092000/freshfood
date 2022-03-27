@@ -1,0 +1,61 @@
+.detail-blog {
+  margin: 50px 100px;
+
+  & p {
+    & h2 {
+      font-size: 1rem;
+    }
+
+    & figure {
+      & img {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+.detail-blog-banner {
+  background: url("https://new-organic-shop.netlify.app/static/media/blog-detail.799ddd2983226bd35c98.jpg");
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  & span {
+    font-size: 1.8rem;
+    color: #fff;
+    z-index: 2;
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: "";
+      left: 0;
+      bottom: -15px;
+      width: 100%;
+      height: 2px;
+      background-color: #fff;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .detail-blog {
+    margin: 10px 20px;
+  }
+}

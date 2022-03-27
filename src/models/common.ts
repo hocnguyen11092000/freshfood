@@ -18,6 +18,7 @@ export interface ListResponse<T> {
   processingCount?: number;
   deliveredCount?: number;
   refusedCount?: number;
+  blogCount?: number;
   category?: Array<string>;
   token?: string;
   user?: User;

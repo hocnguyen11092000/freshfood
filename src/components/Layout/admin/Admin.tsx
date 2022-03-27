@@ -12,6 +12,7 @@ import ListUser from "features/admin/user/pages/list-user/ListUser";
 import { Route, Routes } from "react-router-dom";
 import Sidebar from "../../Common/sidebar/Sidebar";
 import "./admin.scss";
+import AddEditBlog from "features/admin/blog/pages/add-edit-blog/AddEditBlog";
 
 type Props = {};
 
@@ -55,6 +56,11 @@ const AdminLayout = (props: Props) => {
             ></Route>
             {/* order */}
             <Route path="/orderList/" element={<ListOrder></ListOrder>}></Route>
+            {/* blog */}
+            <Route
+              path="/add-edit-blog/"
+              element={<AddEditBlog></AddEditBlog>}
+            ></Route>
           </Route>
         </Routes>
       </div>

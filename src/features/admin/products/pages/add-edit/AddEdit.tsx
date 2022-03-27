@@ -85,6 +85,7 @@ const AddEdit = (props: Props) => {
       }
     }
   };
+
   return (
     <div className="add-edit">
       {(!isEdit || Boolean(product)) && (
