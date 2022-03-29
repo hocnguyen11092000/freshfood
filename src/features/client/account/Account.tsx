@@ -80,11 +80,7 @@ const Account = (props: Props) => {
 
   const handleLogout = async () => {
     try {
-      await userApi.logout();
       dispatch(logout("user"));
-
-      localStorage.removeItem("token");
-      localStorage.removeItem("currentUser");
     } catch (error) {
       console.log(error);
     }

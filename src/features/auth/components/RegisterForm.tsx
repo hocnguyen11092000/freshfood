@@ -18,11 +18,11 @@ const RegisterForm = (props: Props) => {
     name: yup
       .string()
       .required("Please enter name.")
-      .test("4-words", "Please enter at least 4 words", (value) => {
+      .test("2-words", "Please enter at least 2 words", (value) => {
         if (!value) return true;
 
         const parts = value?.split(" ") || [];
-        return parts.filter((x) => Boolean(x)).length >= 4;
+        return parts.filter((x) => Boolean(x)).length >= 2;
       }),
     email: yup
       .string()
