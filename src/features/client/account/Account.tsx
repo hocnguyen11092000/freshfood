@@ -15,10 +15,12 @@ type Props = {};
 
 const Account = (props: Props) => {
   const [showMobile, setShowMobile] = useState<number>(300);
-  const user = useAppSelector((state) => state.auth.currentUser);
-  const dispatch = useAppDispatch();
-  const loading = useAppSelector((state) => state.user.loading);
   const headerRef = useRef<any>();
+
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.currentUser);
+  const loading = useAppSelector((state) => state.user.loading);
+  const logoutLoading = useAppSelector((state) => state.auth.logging);
 
   let userLocal: any = localStorage.getItem("currentUser");
   if (userLocal) userLocal = JSON.parse(userLocal);
@@ -78,7 +80,11 @@ const Account = (props: Props) => {
               <ul className="account__wrapper-account-list">
                 <li>Account info</li>
                 <li>Address list</li>
-                <li onClick={handleLogout}>Logout</li>
+                {logoutLoading ? (
+                  <li>Log out...</li>
+                ) : (
+                  <li onClick={handleLogout}>Logout</li>
+                )}
               </ul>
             </Grid>
             <Grid item md={8} sm={7} xs={12}>

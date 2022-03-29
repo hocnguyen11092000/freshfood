@@ -4,7 +4,9 @@ import { RadioGroupField } from "components/form-controls/RadioGroupField";
 import { getBrowserWidth } from "features/client/Home/components/HomeSkeleton";
 import { Address } from "models";
 import React from "react";
+import * as yup from "yup";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export interface ShippingFrom {
   name: string;
@@ -21,6 +23,31 @@ const ShippingForm = (props: Props) => {
   const { onSubmit } = props;
   const device = getBrowserWidth();
 
+  const schema = yup.object().shape({
+    name: yup
+      .string()
+      .required("Please enter name.")
+      .test("2-words", "Please enter at least 2 words", (value) => {
+        if (!value) return true;
+
+        const parts = value?.split(" ") || [];
+        return parts.filter((x) => Boolean(x)).length >= 2;
+      }),
+    address: yup
+      .string()
+      .required("Please enter name.")
+      .test("2-words", "Please enter at least 2 words", (value) => {
+        if (!value) return true;
+        const parts = value?.split(" ") || [];
+        return parts.filter((x) => Boolean(x)).length >= 2;
+      }),
+    phoneNo: yup
+      .number()
+      .required("Please enter mark.")
+      .typeError("Please enter a valid number."),
+    gender: yup.string().required("Please enter mark."),
+  });
+
   const {
     control,
     handleSubmit,
@@ -34,6 +61,7 @@ const ShippingForm = (props: Props) => {
       phoneNo: "",
       gender: "",
     },
+    resolver: yupResolver(schema),
   });
 
   const handleFormSubmit = async (values: ShippingFrom) => {

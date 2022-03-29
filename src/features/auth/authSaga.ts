@@ -11,6 +11,8 @@ import {
   LoginPayload,
   loginSuccess,
   logout,
+  logoutFail,
+  logoutSuccess,
   resetPassword,
   resetPasswordFail,
   resetPasswordSuccess,
@@ -65,14 +67,20 @@ function* handleResetPassword(action: PayloadAction<ForgotPaload>) {
 }
 
 function* handleLogout(action: PayloadAction<string>) {
-  localStorage.removeItem("token");
-  localStorage.removeItem("currentUser");
+  try {
+    yield call(userApi.logout);
+    yield put(logoutSuccess());
 
-  yield call(userApi.logout);
-  if (action.payload === "user") {
-    yield put(push("/login"));
-  } else {
-    yield put(push("/admin/login"));
+    localStorage.removeItem("token");
+    localStorage.removeItem("currentUser");
+
+    if (action.payload === "user") {
+      yield put(push("/login"));
+    } else {
+      yield put(push("/admin/login"));
+    }
+  } catch (error) {
+    yield put(logoutFail());
   }
 }
 

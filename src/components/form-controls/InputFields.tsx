@@ -37,17 +37,22 @@ export function InputField({
         field: { onChange, onBlur, value, name },
         fieldState: { invalid, error },
       }) => (
-        <input
-          className="input"
-          onChange={onChange}
-          onBlur={onBlur}
-          name={name}
-          value={value}
-          placeholder={placeholder}
-          style={{ minWidth: mWidth, minHeight: mHeight }}
-          required
-          type={type}
-        />
+        <>
+          <input
+            className="input"
+            onChange={onChange}
+            onBlur={onBlur}
+            name={name}
+            value={value}
+            placeholder={placeholder}
+            style={{ minWidth: mWidth, minHeight: mHeight }}
+            required
+            type={type}
+          />
+          <div style={{ paddingTop: "5px", fontSize: "0.8rem", color: "red" }}>
+            {error?.message}
+          </div>
+        </>
       )}
     ></Controller>
   );

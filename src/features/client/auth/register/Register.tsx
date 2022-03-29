@@ -31,9 +31,8 @@ const Register = (props: Props) => {
 
       toast.success("Register successfully");
       navigate("/login");
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
-      toast.error("Register error");
     }
   };
 

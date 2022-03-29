@@ -40,8 +40,16 @@ const authSlice = createSlice({
       state.logging = false;
     },
     logout(state, action: PayloadAction<string>) {
+      state.logging = true;
+    },
+    logoutSuccess(state) {
       state.isLogIn = false;
+      state.logging = false;
       state.currentUser = undefined;
+    },
+    logoutFail(state) {
+      state.isLogIn = true;
+      state.logging = false;
     },
     resetPassword(state, action: PayloadAction<ForgotPaload>) {
       state.logging = true;
@@ -66,6 +74,8 @@ export const {
   resetPassword,
   resetPasswordSuccess,
   resetPasswordFail,
+  logoutSuccess,
+  logoutFail,
 } = authSlice.actions;
 
 //selector

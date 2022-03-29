@@ -1,3 +1,4 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, CircularProgress } from "@mui/material";
 import userApi from "api/userApi";
 import { useAppSelector } from "app/hooks";
@@ -7,6 +8,7 @@ import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import * as yup from "yup";
 
 type Props = {
   onSubmit: (values: Values) => void;
@@ -32,6 +34,17 @@ const LoginForm = (props: Props) => {
   const toggleRef = useRef<any>(null);
   const contentRef = useRef<any>(null);
 
+  const schema = yup.object().shape({
+    email: yup
+      .string()
+      .required("Please enter your email.")
+      .email("Please enter a valid email address."),
+    password: yup
+      .string()
+      .required("Please enter your password")
+      .min(8, "Please enter at least 8 characters."),
+  });
+
   handleShowForgotPassword(toggleRef, contentRef);
 
   const {
@@ -44,13 +57,12 @@ const LoginForm = (props: Props) => {
       email: "",
       password: "",
     },
+    resolver: yupResolver(schema),
   });
 
   const handleFormSubmit = async (values: Values) => {
     if (onSubmit) {
       await onSubmit(values);
-      await setValue("email", "");
-      await setValue("password", "");
     }
   };
 

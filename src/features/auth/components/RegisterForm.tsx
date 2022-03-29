@@ -4,6 +4,8 @@ import { InputField } from "components/form-controls/InputFields";
 import { User } from "models";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useParams } from "react-router-dom";
 
 type Props = {
@@ -12,6 +14,30 @@ type Props = {
 };
 
 const RegisterForm = (props: Props) => {
+  const schema = yup.object().shape({
+    name: yup
+      .string()
+      .required("Please enter name.")
+      .test("4-words", "Please enter at least 4 words", (value) => {
+        if (!value) return true;
+
+        const parts = value?.split(" ") || [];
+        return parts.filter((x) => Boolean(x)).length >= 4;
+      }),
+    email: yup
+      .string()
+      .required("Please enter your email.")
+      .email("Please enter a valid email address."),
+    password: yup
+      .string()
+      .required("Please enter your password")
+      .min(8, "Please enter at least 8 characters."),
+    confirmPassword: yup
+      .string()
+      .required("Please retype your password.")
+      .oneOf([yup.ref("password")], "Password does not match"),
+  });
+
   const loading = useAppSelector((state) => state.user.loading);
   const [avatar, setAvatar] = useState<any>();
   const [avatarPreview, setAvatarPreview] = useState<any>();
@@ -20,15 +46,16 @@ const RegisterForm = (props: Props) => {
 
   const {
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
     control,
   } = useForm({
     defaultValues: {
       name: "",
       email: "",
       password: "",
-      comfirmPassword: "",
+      confirmPassword: "",
     },
+    resolver: yupResolver(schema),
   });
 
   const handleImageChange = (e: any) => {
@@ -144,7 +171,7 @@ const RegisterForm = (props: Props) => {
             )}
           </button>
           <span style={{ marginLeft: "10px", fontSize: "0.8rem" }}>
-            Already have an account <Link to="/admin/login">Login here</Link>
+            Already have an account <Link to="/login">Login here</Link>
           </span>
         </div>
       </form>
