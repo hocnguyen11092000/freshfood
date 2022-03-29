@@ -11,7 +11,7 @@ const axiosClient = axios.create({
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
-    Authorization: "Bearer " + token, //the token is a variable which holds the token
+    Authorization: `Bearer ${token}`, //the token is a variable which holds the token
   },
 });
 
