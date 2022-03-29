@@ -11,7 +11,7 @@ import SearchProduct, {
 } from "features/client/product/components/filter/search/SearchProduct";
 import ProductItem from "features/client/product/components/product-item/ProductItem";
 import { ListResponse, Product } from "models";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
 import Price from "../../components/filter/price/Price";
 import ProductSkelation from "../../components/product-skelaton/ProductSkelation";
@@ -20,9 +20,24 @@ import "./listproduct.scss";
 type Props = {};
 
 const ListProduct = (props: Props) => {
-  const device = getBrowserWidth();
   const [showMobile, setShowMobile] = useState<number>(300);
   const [page, setPage] = React.useState<number>(1);
+  const headerRef = useRef<any>();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        headerRef.current?.classList.add("active");
+      } else {
+        headerRef.current?.classList.remove("active");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const [filter, setFilter] = useState<any>({
     page,
@@ -100,7 +115,7 @@ const ListProduct = (props: Props) => {
 
   return (
     <>
-      <Header onChange={handleChangeMobileSidebar}></Header>
+      <Header ref={headerRef} onChange={handleChangeMobileSidebar}></Header>
       <div
         style={{
           backgroundColor: "rgb(240, 240, 240)",

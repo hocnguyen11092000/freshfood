@@ -1,16 +1,20 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import orderApi from "api/orderApi";
 import { ListParams, ListResponse, User } from "models";
+import { Order } from "models/order";
 import userApi from "../../../api/userApi";
 
 export interface UserState {
   loading: boolean;
   list: User[];
+  orderList: Order[];
   filter: ListParams;
 }
 
 const initialState: UserState = {
   loading: false,
   list: [],
+  orderList: [],
   filter: {
     page: 1,
   },
@@ -22,6 +26,16 @@ export const fetchUser = createAsyncThunk(
     const data = await userApi.getAll(params);
     return {
       data: data.users,
+    };
+  }
+);
+
+export const fetchMyOrders = createAsyncThunk(
+  "user/fetchMyOrders",
+  async () => {
+    const data = await orderApi.getMyOrders();
+    return {
+      data: data.orders,
     };
   }
 );
@@ -60,6 +74,16 @@ const useSlice = createSlice({
         fetchUser.fulfilled,
         (state: any, action: PayloadAction<ListResponse<User>>) => {
           state.list = action.payload.data;
+          state.loading = false;
+        }
+      )
+      .addCase(fetchMyOrders.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(
+        fetchMyOrders.fulfilled,
+        (state: any, action: PayloadAction<ListResponse<Order>>) => {
+          state.orderList = action.payload.data;
           state.loading = false;
         }
       )

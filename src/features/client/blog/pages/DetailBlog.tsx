@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Blog } from "../../../../models/blog";
 import blogApi from "../../../../api/blogApi";
@@ -12,8 +12,24 @@ type Props = {};
 const DetailBlog = (props: Props) => {
   const [blog, setBlog] = useState<Blog>();
   const [isLoading, setIsloading] = useState<boolean>(false);
+  const headerRef = useRef<any>();
   const [showMobile, setShowMobile] = useState<number>(300);
   const { id } = useParams();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        headerRef.current?.classList.add("active");
+      } else {
+        headerRef.current?.classList.remove("active");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -33,7 +49,7 @@ const DetailBlog = (props: Props) => {
 
   if (isLoading)
     return (
-      <div style={{ marginTop: "10px" }}>
+      <div style={{ marginTop: "20px" }}>
         <LinearProgress color="info" />
       </div>
     );
@@ -48,7 +64,7 @@ const DetailBlog = (props: Props) => {
 
   return (
     <>
-      <Header onChange={handleChangeMobileSidebar}></Header>
+      <Header ref={headerRef} onChange={handleChangeMobileSidebar}></Header>
       <div className="detail-blog-banner">
         <span>Blog</span>
       </div>

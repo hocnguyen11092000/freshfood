@@ -3,7 +3,7 @@ import { Blog } from "models/blog";
 import axiosClient from "./axiosClient";
 
 const blogApi = {
-  getAll(params: number): Promise<ListResponse<Blog>> {
+  getAll(params: ListParams): Promise<ListResponse<Blog>> {
     const url = "/blogs";
     return axiosClient.get(url, { params });
   },

@@ -9,6 +9,7 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   mWidth?: number | string;
   mHeight?: number | string;
+  type?: string;
 }
 
 export function InputField({
@@ -45,6 +46,7 @@ export function InputField({
           placeholder={placeholder}
           style={{ minWidth: mWidth, minHeight: mHeight }}
           required
+          type={type}
         />
       )}
     ></Controller>

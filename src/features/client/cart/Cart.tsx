@@ -3,7 +3,7 @@ import Footer from "components/Common/footer/Footer";
 import Header from "components/Common/header/Header";
 import SidebarMobile from "components/Common/sidebarMobile/SidebarMobile";
 import Table from "components/Common/table/Table";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./cart.scss";
 type Props = {};
@@ -11,6 +11,8 @@ type Props = {};
 const Cart = (props: Props) => {
   const [showMobile, setShowMobile] = useState<number>(300);
   const navigate = useNavigate();
+  const headerRef = useRef<any>();
+
   const head = [
     "stt",
     "name",
@@ -21,6 +23,21 @@ const Cart = (props: Props) => {
     "discount",
     "total",
   ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        headerRef.current?.classList.add("active");
+      } else {
+        headerRef.current?.classList.remove("active");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const itemsPrice = cartItems
@@ -41,7 +58,7 @@ const Cart = (props: Props) => {
 
   return (
     <>
-      <Header onChange={handleChangeMobileSidebar}></Header>
+      <Header ref={headerRef} onChange={handleChangeMobileSidebar}></Header>
       <div className="cart-banner">
         <span>Cart Page</span>
       </div>

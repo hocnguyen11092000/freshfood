@@ -4,6 +4,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import {
   CircularProgress,
   FormControl,
+  IconButton,
   InputLabel,
   LinearProgress,
   MenuItem,
@@ -206,7 +207,9 @@ const Table = (props: Props) => {
               <CloseIcon></CloseIcon>
             </div>
           </Popup>
-          <div style={{ width: "100%" }}>{loading && <LinearProgress />}</div>
+          <div style={{ width: "100%" }}>
+            {loading && !dataCart && <LinearProgress />}
+          </div>
           <table>
             <thead>
               <tr>
@@ -286,7 +289,7 @@ const Table = (props: Props) => {
                       <td>{item.orderItems[0].name}</td>
                       <td>{item.orderItems[0].quantity}</td>
                       <td>{item.orderItems[0].weight}</td>
-                      <td>{item.itemsPrice}</td>
+                      <td>{item.itemsPrice.toFixed(3)}đ</td>
                       <td>
                         <span className={item.orderStatus}>
                           {item.orderStatus}

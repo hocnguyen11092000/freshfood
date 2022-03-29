@@ -39,7 +39,7 @@ const authSlice = createSlice({
     loginFailed(state, action: PayloadAction<string>) {
       state.logging = false;
     },
-    logout(state) {
+    logout(state, action: PayloadAction<string>) {
       state.isLogIn = false;
       state.currentUser = undefined;
     },

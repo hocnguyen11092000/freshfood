@@ -2,14 +2,13 @@ import productApi from "api/productApi";
 import Contact from "components/Common/contact/Contact";
 import Footer from "components/Common/footer/Footer";
 import Header from "components/Common/header/Header";
+import SidebarMobile from "components/Common/sidebarMobile/SidebarMobile";
 import { ListResponse, Product } from "models";
 import React, { useEffect, useRef, useState } from "react";
-
-import HomeSkeleton from "./components/HomeSkeleton";
 import { useQuery } from "react-query";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import HomeSkeleton from "./components/HomeSkeleton";
 import "./home.scss";
-import SidebarMobile from "components/Common/sidebarMobile/SidebarMobile";
 
 type Props = {};
 
@@ -114,27 +113,29 @@ const Home = (props: Props) => {
           {data &&
             data.products.map((item: Product) => {
               return (
-                <>
-                  <div
-                    key={item._id}
-                    className="newProduct__wrapper-block"
-                    onClick={() => handleNavigate(item._id)}
-                  >
-                    <div className="newProduct__wrapper-block-img">
-                      <img src={item.images[0].url} alt="" />
-                    </div>
-                    <div className="newProduct__wrapper-block-name">
-                      {item.name}
-                    </div>
-                    <div className="newProduct__wrapper-block-price">
-                      {item.price}.000đ/kg
-                    </div>
+                <div
+                  key={item._id}
+                  className="newProduct__wrapper-block"
+                  onClick={() => handleNavigate(item._id)}
+                >
+                  <div className="newProduct__wrapper-block-img">
+                    <img src={item.images[0].url} alt="" />
                   </div>
-                </>
+                  <div className="newProduct__wrapper-block-name">
+                    {item.name}
+                  </div>
+                  <div className="newProduct__wrapper-block-price">
+                    {item.price}.000đ/kg
+                  </div>
+                </div>
               );
             })}
         </div>
+        <div className="newProduct__see-more">
+          <button onClick={() => navigate("/shop")}>Watch more</button>
+        </div>
       </div>
+
       <Contact></Contact>
       <Footer></Footer>
       <SidebarMobile

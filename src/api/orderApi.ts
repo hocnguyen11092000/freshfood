@@ -13,6 +13,11 @@ const orderApi = {
     return axiosClient.get(url);
   },
 
+  getMyOrders(): Promise<Order> {
+    const url = `/orders/me`;
+    return axiosClient.get(url);
+  },
+
   add(data: FormData): Promise<Order> {
     const url = "/order/new";
     return axiosClient.post(url, data);

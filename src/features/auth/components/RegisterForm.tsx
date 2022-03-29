@@ -93,6 +93,7 @@ const RegisterForm = (props: Props) => {
                 name="password"
                 placeholder="Nhập password..."
                 mWidth={250}
+                type="password"
               ></InputField>
             </div>
             <div className="add-edit-user__form-group">
@@ -101,6 +102,7 @@ const RegisterForm = (props: Props) => {
                 control={control}
                 id="confirmPassword"
                 name="confirmPassword"
+                type="password"
                 placeholder="Nhập confirmPassword..."
                 mWidth={250}
               ></InputField>

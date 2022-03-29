@@ -69,8 +69,11 @@ const CheckOut = (props: Props) => {
       // localStorage.setItem("socket", Math.random().toString());
     } catch (error: any) {
       const statusCode = error.response.status;
+      const errorMessage = error.response.data.error;
 
-      if (statusCode == "401") {
+      if (errorMessage === "jwt malformed") {
+        toast.error("UnAuthenticated User, Please login again");
+      } else if (statusCode == "401") {
         // navigate("/admin/login");
         toast.error("please login to checkout");
       } else {

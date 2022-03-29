@@ -7,7 +7,7 @@ import Header from "components/Common/header/Header";
 import SidebarMobile from "components/Common/sidebarMobile/SidebarMobile";
 import { ListParams, ListResponse } from "models";
 import { Blog } from "models/blog";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useInfiniteQuery, useQuery, QueryFunctionContext } from "react-query";
 import "./blog.scss";
 import BlogItem from "./components/BlogItem";
@@ -16,6 +16,24 @@ type Props = {};
 const BlogPage = (props: Props) => {
   const [page, setPage] = useState<number>(1);
   const [showMobile, setShowMobile] = useState<number>(300);
+
+  const headerRef = useRef<any>();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        headerRef.current?.classList.add("active");
+      } else {
+        headerRef.current?.classList.remove("active");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const [filter, setFilter] = useState<any>({
     page,
   });
@@ -30,7 +48,7 @@ const BlogPage = (props: Props) => {
   const { data, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage } =
     useInfiniteQuery<any, ErrorConstructor>("blogs", fetchBlogList, {
       getNextPageParam: (lastPage, pages) => {
-        if (pages.length * 4 > pages[0].data.blogCount) return undefined;
+        if (pages.length * 4 > pages[0]?.data?.blogCount) return undefined;
 
         return pages.length + 1;
       },
@@ -45,7 +63,7 @@ const BlogPage = (props: Props) => {
   };
   return (
     <>
-      <Header onChange={handleChangeMobileSidebar}></Header>
+      <Header ref={headerRef} onChange={handleChangeMobileSidebar}></Header>
       <div className="blog">
         <Grid container spacing={4}>
           <Grid item md={4} sm={12} xs={12}>
@@ -147,7 +165,7 @@ const BlogPage = (props: Props) => {
                   )}
                   {data &&
                     data.pages.map((group: any) => {
-                      return group.data.blogs.map((item: Blog) => (
+                      return group.data?.blogs.map((item: Blog) => (
                         <BlogItem key={item._id} item={item}></BlogItem>
                       ));
                     })}

@@ -64,12 +64,16 @@ function* handleResetPassword(action: PayloadAction<ForgotPaload>) {
   }
 }
 
-function* handleLogout() {
+function* handleLogout(action: PayloadAction<string>) {
   localStorage.removeItem("token");
   localStorage.removeItem("currentUser");
 
   yield call(userApi.logout);
-  yield put(push("/admin/login"));
+  if (action.payload === "user") {
+    yield put(push("/login"));
+  } else {
+    yield put(push("/admin/login"));
+  }
 }
 
 export default function* couterSaga() {

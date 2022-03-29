@@ -32,9 +32,14 @@
       }
     }
 
+    &-groupIcon {
+      display: flex;
+      align-items: center;
+    }
+
     &-groupIcon &-groupIcon-icon {
       display: inline-block;
-      margin-left: 10px;
+      margin-left: 15px;
       cursor: pointer;
       position: relative;
 

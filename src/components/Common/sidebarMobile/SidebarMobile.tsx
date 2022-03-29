@@ -2,6 +2,7 @@ import React from "react";
 import "./sidebarmobile.scss";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "app/hooks";
 type Props = {
   children?: React.ReactNode;
   show?: number;
@@ -10,6 +11,9 @@ type Props = {
 
 const SidebarMobile = (props: Props) => {
   const { show, onClose } = props;
+  const user = useAppSelector((state) => state.auth.currentUser);
+  let userLocal: any = localStorage.getItem("currentUser");
+  if (userLocal) userLocal = JSON.parse(userLocal);
 
   const handleCloseIcon = () => {
     if (onClose) {
@@ -40,6 +44,15 @@ const SidebarMobile = (props: Props) => {
         </li>
         <li>
           <Link to="/cart">Cart</Link>
+        </li>
+        <li>
+          {user || userLocal ? (
+            <span style={{ cursor: "pointer" }}>
+              <Link to="/account">{user?.name || userLocal?.name}</Link>
+            </span>
+          ) : (
+            <Link to="/login">Login</Link>
+          )}
         </li>
       </ul>
     </div>

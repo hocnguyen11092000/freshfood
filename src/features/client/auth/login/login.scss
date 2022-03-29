@@ -1,0 +1,45 @@
+.login-banner {
+  background: url("https://new-organic-shop.netlify.app/static/media/sub-heading.403572ef62c7b515e62e.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  & span {
+    font-size: 1.8rem;
+    color: #fff;
+    z-index: 1;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #fff;
+    }
+  }
+}
+
+.login.client {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 20px 0;
+  height: auto;
+}

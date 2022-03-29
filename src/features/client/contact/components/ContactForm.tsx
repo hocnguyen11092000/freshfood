@@ -23,10 +23,14 @@ const ContactForm = (props: Props) => {
     },
   });
 
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="contact-page__form">
       <h4 className="contact-page__form-heading">Send us your questions</h4>
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <div className="contact-page__form-form-group">
           <InputField
             name="name"

@@ -1,5 +1,6 @@
 import { CircularProgress } from "@mui/material";
 import { InputField } from "components/form-controls/InputFields";
+import { RadioGroupField } from "components/form-controls/RadioGroupField";
 import { getBrowserWidth } from "features/client/Home/components/HomeSkeleton";
 import { Address } from "models";
 import React from "react";
@@ -91,27 +92,48 @@ const ShippingForm = (props: Props) => {
                 placeholder="Nhập phoneNo..."
               ></InputField>
             </div>
-            <div className="form-group" style={{ margin: "15px 0" }}>
-              <label
-                style={{ minWidth: "150px", display: "inline-block" }}
-                htmlFor="gender"
-              >
-                Gender:
-              </label>
-              <InputField
-                mWidth={device === "xs" ? "300px" : "350px"}
-                id="gender"
-                name="gender"
-                control={control}
-                placeholder="Nhập gender..."
-              ></InputField>
-            </div>
+            {/* <div className="form-group" style={{ margin: "15px 0" }}>
+              <div className="radio">
+                <span className="male">
+                  <span style={{ marginRight: "10px" }}>Male</span>
+                  <InputField
+                    id="gender"
+                    name="gender"
+                    value="nam"
+                    control={control}
+                    type="radio"
+                  ></InputField>
+                </span>
+                <span className="female" style={{ marginLeft: "20px" }}>
+                  <span style={{ marginRight: "10px" }}>FeMale</span>
+                  <InputField
+                    id="gender"
+                    name="gender"
+                    value="nữ"
+                    type="radio"
+                    control={control}
+                  ></InputField>
+                </span>
+              </div>
+            </div> */}
+            <RadioGroupField
+              name="gender"
+              control={control}
+              label="Gender"
+              options={[
+                { label: "Male", value: "male" },
+                { label: "Female", value: "female" },
+              ]}
+            />
             <div className="check-out-btn">
               <button type="submit" disabled={isSubmitting}>
                 {isSubmitting ? (
-                  <CircularProgress size={16}></CircularProgress>
+                  <CircularProgress
+                    sx={{ color: "#fff" }}
+                    size={16}
+                  ></CircularProgress>
                 ) : (
-                  "Thanh toán"
+                  "Check out"
                 )}
               </button>
             </div>

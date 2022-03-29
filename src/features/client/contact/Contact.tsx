@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import Footer from "components/Common/footer/Footer";
 import Header from "components/Common/header/Header";
 import SidebarMobile from "components/Common/sidebarMobile/SidebarMobile";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { getBrowserWidth } from "../Home/components/HomeSkeleton";
 import ContactForm from "./components/ContactForm";
 import "./contact.scss";
@@ -11,6 +11,24 @@ type Props = {};
 const Contact = (props: Props) => {
   const device = getBrowserWidth();
   const [showMobile, setShowMobile] = useState<number>(300);
+
+  const headerRef = useRef<any>();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        headerRef.current?.classList.add("active");
+      } else {
+        headerRef.current?.classList.remove("active");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const handleChangeMobileSidebar = () => {
     setShowMobile(0);
   };
@@ -21,7 +39,7 @@ const Contact = (props: Props) => {
 
   return (
     <>
-      <Header onChange={handleChangeMobileSidebar}></Header>
+      <Header ref={headerRef} onChange={handleChangeMobileSidebar}></Header>
       <div className="contact-page">
         <Grid container spacing={3}>
           <Grid item md={6} sm={12} xs={12}>

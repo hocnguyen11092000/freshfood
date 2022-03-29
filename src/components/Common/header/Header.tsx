@@ -3,9 +3,10 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { useAppSelector } from "app/hooks";
 import MenuIcon from "@mui/icons-material/Menu";
-import React, { forwardRef, useRef } from "react";
+import React, { forwardRef, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./header.scss";
+import Search from "features/client/Home/components/search/Search";
 type Props = {
   height?: string;
   bg?: string;
@@ -15,13 +16,22 @@ type Props = {
 
 const Header = (props: Props, ref: any) => {
   const { height, bg, onChange } = props;
+  const [search, setSearch] = useState(-400);
   const cart = useAppSelector((state) => state.cart.cartItems);
+  const user = useAppSelector((state) => state.auth.currentUser);
+  let userLocal: any = localStorage.getItem("currentUser");
+  if (userLocal) userLocal = JSON.parse(userLocal);
+
   let count = 0;
 
   const handleShowMobileSidebar = () => {
     if (onChange) {
       onChange();
     }
+  };
+
+  const handleCloseSearch = () => {
+    setSearch(-400);
   };
 
   cart.forEach((item) => (count += item.quantity));
@@ -61,7 +71,7 @@ const Header = (props: Props, ref: any) => {
         </div>
         <div className="header__container-groupIcon">
           <span className="header__container-groupIcon-icon">
-            <SearchIcon></SearchIcon>
+            <SearchIcon onClick={() => setSearch(0)}></SearchIcon>
           </span>
           <span className="header__container-groupIcon-icon">
             <Link to="/cart">
@@ -70,10 +80,19 @@ const Header = (props: Props, ref: any) => {
             {count > 0 && <span className="count-cart">{count}</span>}
           </span>
           <span className="header__container-groupIcon-icon">
-            <PersonOutlineOutlinedIcon></PersonOutlineOutlinedIcon>
+            {user || userLocal ? (
+              <span className="header__container-groupIcon-icon-account">
+                <Link to="/account">{user?.name || userLocal?.name}</Link>
+              </span>
+            ) : (
+              <Link to="/login">
+                <PersonOutlineOutlinedIcon></PersonOutlineOutlinedIcon>
+              </Link>
+            )}
           </span>
         </div>
       </div>
+      <Search search={search} onClose={handleCloseSearch}></Search>
     </header>
   );
 };

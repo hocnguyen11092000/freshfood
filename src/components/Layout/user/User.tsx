@@ -9,6 +9,9 @@ import Blog from "features/client/blog/Blog";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import DetailBlog from "features/client/blog/pages/DetailBlog";
+import Login from "features/client/auth/login/Login";
+import Account from "features/client/account/Account";
+import Register from "features/client/auth/register/Register";
 
 type Props = {};
 
@@ -39,6 +42,11 @@ const UserLayout = (props: Props) => {
         {/* cart */}
         <Route path="/cart" element={<Cart></Cart>}></Route>
         {/* </Route> */}
+        {/* auth */}
+        <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="/register" element={<Register></Register>}></Route>
+        {/* account */}
+        <Route path="/account" element={<Account></Account>}></Route>
       </Routes>
     </>
   );

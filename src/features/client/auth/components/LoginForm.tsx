@@ -93,8 +93,8 @@ const LoginForm = (props: Props) => {
                 id="password"
                 name="password"
                 control={control}
-                type="password"
                 placeholder="Nhập password"
+                type="password"
               ></InputField>
             </div>
             <div className="form-group">
@@ -106,7 +106,7 @@ const LoginForm = (props: Props) => {
               <span className="forgot">
                 Don't have an account
                 <span>
-                  <Link to="/admin/register">
+                  <Link to="/register">
                     <span style={{ marginLeft: "15px", fontWeight: "bold" }}>
                       Register here
                     </span>
@@ -141,7 +141,7 @@ const LoginForm = (props: Props) => {
               {(loadingForgot && (
                 <CircularProgress size={16} sx={{ color: "#fff" }} />
               )) ||
-                "Thực hiện"}
+                "Submit"}
             </button>
           </div>
         </div>

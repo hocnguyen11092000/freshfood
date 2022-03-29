@@ -59,7 +59,7 @@ const Dropdown = (props: Props) => {
             </li>
             <li className="dropdown__content-item">
               {localStorage.getItem("token") ? (
-                <span onClick={() => dispatch(logout())}>Logout</span>
+                <span onClick={() => dispatch(logout("admin"))}>Logout</span>
               ) : (
                 <NavLink to="/admin/login">Login</NavLink>
               )}

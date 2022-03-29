@@ -1,0 +1,79 @@
+.account {
+  margin: 50px 100px;
+
+  &__heading {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 0 0 50px 0;
+
+    & span {
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -15px;
+        width: 100%;
+        height: 2px;
+        background-color: #333;
+      }
+    }
+  }
+
+  &__wrapper {
+    &-account {
+      & h3 {
+        margin: 15px 0;
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+      }
+
+      &-list li {
+        list-style: circle;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+    }
+
+    &-info {
+      margin-bottom: 30px;
+
+      &-heading {
+        margin: 15px 0;
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+      }
+
+      & img {
+        width: 20%;
+        object-fit: cover;
+      }
+
+      & p {
+        margin-top: 10px;
+      }
+
+      &-your-orders {
+        margin-top: 20px;
+
+        &-item {
+          background-color: rgb(240, 240, 240);
+          margin-bottom: 10px;
+          padding: 20px;
+          border-radius: 5px;
+
+          & p {
+            margin: 5px 0;
+          }
+
+          &-product {
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+          }
+        }
+      }
+    }
+  }
+}

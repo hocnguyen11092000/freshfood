@@ -1,14 +1,19 @@
 import { unwrapResult } from "@reduxjs/toolkit";
 import { useAppDispatch } from "app/hooks";
+import Footer from "components/Common/footer/Footer";
+import Header from "components/Common/header/Header";
+import SidebarMobile from "components/Common/sidebarMobile/SidebarMobile";
 import { addUser } from "features/admin/user/userSlice";
 import RegisterForm from "features/auth/components/RegisterForm";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import "./login.scss";
+import "./register.scss";
 
 type Props = {};
 
 const Register = (props: Props) => {
+  const [showMobile, setShowMobile] = useState<number>(300);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const handleFormSubmit = async (values: any) => {
@@ -32,10 +37,29 @@ const Register = (props: Props) => {
     }
   };
 
+  const handleChangeMobileSidebar = () => {
+    setShowMobile(0);
+  };
+
+  const handleCloseMobileSidebar = () => {
+    setShowMobile(300);
+  };
+
   return (
-    <div className="login">
-      <RegisterForm onSubmit={handleFormSubmit}></RegisterForm>
-    </div>
+    <>
+      <Header onChange={handleChangeMobileSidebar}></Header>
+      <div className="login-banner">
+        <span>My Account</span>
+      </div>
+      <div className="login client">
+        <RegisterForm onSubmit={handleFormSubmit}></RegisterForm>
+      </div>
+      <Footer bg="#f0f0f0"></Footer>
+      <SidebarMobile
+        onClose={handleCloseMobileSidebar}
+        show={showMobile}
+      ></SidebarMobile>
+    </>
   );
 };
 

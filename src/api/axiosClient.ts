@@ -1,10 +1,17 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
+let token = localStorage.getItem("token");
+
+if (token) {
+  token = JSON.stringify(token);
+}
+
 const axiosClient = axios.create({
   baseURL: "https://orchid.tk/api/v1",
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
+    Authorization: "Bearer " + token, //the token is a variable which holds the token
   },
 });
 
