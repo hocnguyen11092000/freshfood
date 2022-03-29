@@ -37,6 +37,7 @@ const SearchProduct = (props: Props) => {
           control={control}
           name="keyword"
           placeholder="Search..."
+          noerror={true}
         ></InputField>
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? (

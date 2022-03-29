@@ -10,6 +10,7 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   mWidth?: number | string;
   mHeight?: number | string;
   type?: string;
+  noerror?: boolean;
 }
 
 export function InputField({
@@ -20,6 +21,7 @@ export function InputField({
   placeholder,
   mWidth,
   mHeight,
+  noerror,
 }: InputFieldProps) {
   const {
     field: { value, onChange, onBlur, ref },
@@ -49,9 +51,13 @@ export function InputField({
             required
             type={type}
           />
-          <div style={{ paddingTop: "5px", fontSize: "0.8rem", color: "red" }}>
-            {error?.message}
-          </div>
+          {!noerror && (
+            <div
+              style={{ paddingTop: "5px", fontSize: "0.8rem", color: "red" }}
+            >
+              {error?.message}
+            </div>
+          )}
         </>
       )}
     ></Controller>
