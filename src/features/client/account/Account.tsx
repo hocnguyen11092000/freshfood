@@ -2,6 +2,7 @@ import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import userApi from "api/userApi";
 import { useAppSelector, useAppDispatch } from "app/hooks";
+import axios from "axios";
 import Footer from "components/Common/footer/Footer";
 import Header from "components/Common/header/Header";
 import SidebarMobile from "components/Common/sidebarMobile/SidebarMobile";
@@ -15,6 +16,7 @@ type Props = {};
 
 const Account = (props: Props) => {
   const [showMobile, setShowMobile] = useState<number>(300);
+  const [orderList, setOrderList] = useState<Order[]>([]);
   const headerRef = useRef<any>();
 
   const dispatch = useAppDispatch();
@@ -41,10 +43,28 @@ const Account = (props: Props) => {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchMyOrders());
+    //dispatch(fetchMyOrders());
+    (async () => {
+      let tokenLocal = localStorage.getItem("token");
+
+      if (tokenLocal) {
+        tokenLocal = JSON.stringify(tokenLocal);
+      }
+      try {
+        const res = await axios.get("https://orchid.tk/api/v1/orders/me", {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenLocal}`, //the token is a variable which holds the token
+          },
+        });
+        setOrderList(res.data.orders);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
   }, [dispatch]);
 
-  const orderList = useAppSelector((state) => state.user.orderList);
+  // const orderList = useAppSelector((state) => state.user.orderList);
 
   const handleChangeMobileSidebar = () => {
     setShowMobile(0);

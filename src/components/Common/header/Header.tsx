@@ -7,6 +7,7 @@ import React, { forwardRef, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./header.scss";
 import Search from "features/client/Home/components/search/Search";
+import { getToken } from "utils/jwt";
 type Props = {
   height?: string;
   bg?: string;
@@ -17,6 +18,7 @@ type Props = {
 const Header = (props: Props, ref: any) => {
   const { height, bg, onChange } = props;
   const [search, setSearch] = useState(-400);
+
   const cart = useAppSelector((state) => state.cart.cartItems);
   const user = useAppSelector((state) => state.auth.currentUser);
   let userLocal: any = localStorage.getItem("currentUser");

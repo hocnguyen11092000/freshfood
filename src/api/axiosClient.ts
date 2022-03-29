@@ -1,9 +1,10 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { getToken } from "utils/jwt";
 
-let token = localStorage.getItem("token");
+let tokenLocal = localStorage.getItem("token");
 
-if (token) {
-  token = JSON.stringify(token);
+if (tokenLocal) {
+  tokenLocal = JSON.stringify(tokenLocal);
 }
 
 const axiosClient = axios.create({
@@ -11,7 +12,7 @@ const axiosClient = axios.create({
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`, //the token is a variable which holds the token
+    Authorization: `Bearer ${tokenLocal}`, //the token is a variable which holds the token
   },
 });
 

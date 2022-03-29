@@ -3,6 +3,8 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import userApi from "api/userApi";
 import { toast } from "react-toastify";
 import { call, put, takeEvery } from "redux-saga/effects";
+import { setToken } from "utils/jwt";
+import { ListResponse } from "./../../models/common";
 import { User } from "./../../models/user";
 import {
   ForgotPaload,
@@ -20,14 +22,16 @@ import {
 
 function* handleLogin(action: PayloadAction<LoginPayload>) {
   try {
-    const res: User = yield call(userApi.login, action.payload);
+    const res: ListResponse<User> = yield call(userApi.login, action.payload);
 
-    localStorage.setItem("token", res.token);
+    if (res.token) localStorage.setItem("token", res.token);
     localStorage.setItem("currentUser", JSON.stringify(res.user));
 
-    yield put(loginSuccess(res.user));
+    setToken(res.token as string);
 
-    if (res.user.role == "user") {
+    yield put(loginSuccess(res));
+
+    if (res?.user?.role == "user") {
       yield put(push("/"));
     } else {
       yield put(push("/admin"));
@@ -84,7 +88,7 @@ function* handleLogout(action: PayloadAction<string>) {
   }
 }
 
-export default function* couterSaga() {
+export default function* authSaga() {
   yield takeEvery(login.type, handleLogin);
   yield takeEvery(logout.type, handleLogout);
   yield takeEvery(resetPassword.type, handleResetPassword);

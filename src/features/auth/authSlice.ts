@@ -1,3 +1,4 @@
+import { ListResponse } from "./../../models/common";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ForgotValues } from "features/admin/user/pages/fogot-password/FogotPassword";
 import { User } from "../../models/user";
@@ -11,6 +12,7 @@ export interface AuthState {
   isLogIn: boolean;
   logging: boolean;
   currentUser?: User;
+  token?: string;
 }
 
 export interface ForgotPaload {
@@ -22,6 +24,7 @@ const initialState: AuthState = {
   isLogIn: false,
   logging: false,
   currentUser: undefined,
+  token: "",
 };
 
 const authSlice = createSlice({
@@ -31,10 +34,11 @@ const authSlice = createSlice({
     login(state, action: PayloadAction<LoginPayload>) {
       state.logging = true;
     },
-    loginSuccess(state, action: PayloadAction<User>) {
+    loginSuccess(state, action: PayloadAction<ListResponse<User>>) {
       state.isLogIn = true;
       state.logging = false;
-      state.currentUser = action.payload;
+      state.currentUser = action.payload.user;
+      state.token = action.payload.token;
     },
     loginFailed(state, action: PayloadAction<string>) {
       state.logging = false;

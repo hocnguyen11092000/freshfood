@@ -6,8 +6,9 @@ import Header from "components/Common/header/Header";
 import Popup from "components/Common/popup/Popup";
 import SidebarMobile from "components/Common/sidebarMobile/SidebarMobile";
 import { socketAcions } from "features/socket/socketSlice";
-import Cookies from "js-cookie";
+import axios from "axios";
 import { useState } from "react";
+import Cookies from "js-cookie";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { cartActions } from "../cart/cartSlice";
@@ -57,7 +58,21 @@ const CheckOut = (props: Props) => {
       },
     };
     try {
-      const res: any = await orderApi.add(data);
+      let tokenLocal = localStorage.getItem("token");
+
+      if (tokenLocal) {
+        tokenLocal = JSON.stringify(tokenLocal);
+      }
+      const res: any = await axios.post(
+        "https://orchid.tk/api/v1/order/new",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenLocal}`, //the token is a variable which holds the token
+          },
+        }
+      );
       Cookies.remove("cartItems");
 
       dispatch(cartActions.clearCart());
