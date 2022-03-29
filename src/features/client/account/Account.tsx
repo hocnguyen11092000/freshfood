@@ -16,6 +16,7 @@ type Props = {};
 
 const Account = (props: Props) => {
   const [showMobile, setShowMobile] = useState<number>(300);
+  const [orderLoading, setOrderLoading] = useState<boolean>(false);
   const [orderList, setOrderList] = useState<Order[]>([]);
   const headerRef = useRef<any>();
 
@@ -50,6 +51,7 @@ const Account = (props: Props) => {
       if (tokenLocal) {
         tokenLocal = JSON.stringify(tokenLocal);
       }
+      setOrderLoading(true);
       try {
         const res = await axios.get("https://orchid.tk/api/v1/orders/me", {
           headers: {
@@ -58,8 +60,10 @@ const Account = (props: Props) => {
           },
         });
         setOrderList(res.data.orders);
+        setOrderLoading(false);
       } catch (error) {
         console.log(error);
+        setOrderLoading(false);
       }
     })();
   }, [dispatch]);
@@ -120,7 +124,7 @@ const Account = (props: Props) => {
                     Your Orders
                   </Typography>
                   <div className="account__wrapper-info-your-orders">
-                    {loading ? (
+                    {loading || orderLoading ? (
                       <div>Loading...</div>
                     ) : orderList.length !== 0 ? (
                       orderList.map((item: Order) => {
