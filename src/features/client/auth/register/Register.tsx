@@ -2,12 +2,14 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import { useAppDispatch } from "app/hooks";
 import Footer from "components/Common/footer/Footer";
 import Header from "components/Common/header/Header";
+import Popup from "components/Common/popup/Popup";
 import SidebarMobile from "components/Common/sidebarMobile/SidebarMobile";
 import { addUser } from "features/admin/user/userSlice";
 import RegisterForm from "features/auth/components/RegisterForm";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { getBrowserWidth } from "utils/getBrowserDevice";
 import "./register.scss";
 
 type Props = {};
@@ -16,6 +18,8 @@ const Register = (props: Props) => {
   const [showMobile, setShowMobile] = useState<number>(300);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const device = getBrowserWidth();
+
   const handleFormSubmit = async (values: any) => {
     const myForm = new FormData();
 
@@ -58,6 +62,37 @@ const Register = (props: Props) => {
         onClose={handleCloseMobileSidebar}
         show={showMobile}
       ></SidebarMobile>
+      {device === "xs" && (
+        <Popup active={true}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center",
+              height: "100%",
+            }}
+          >
+            <h3>sorry, this feature currently only works on desktop</h3>
+            <Link to="/">
+              <button
+                style={{
+                  padding: "8px 10px",
+                  background: "#019707",
+                  borderRadius: "5px",
+                  border: "none",
+                  color: "#fff",
+                  fontSize: "1rem",
+                  marginTop: "10px",
+                  cursor: "pointer",
+                }}
+              >
+                Go back home
+              </button>
+            </Link>
+          </div>
+        </Popup>
+      )}
     </>
   );
 };

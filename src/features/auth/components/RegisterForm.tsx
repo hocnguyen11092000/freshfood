@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useParams } from "react-router-dom";
+import { getBrowserWidth } from "utils/getBrowserDevice";
 
 type Props = {
   onSubmit?: (values: User) => void;
@@ -14,6 +15,7 @@ type Props = {
 };
 
 const RegisterForm = (props: Props) => {
+  const device = getBrowserWidth();
   const schema = yup.object().shape({
     name: yup
       .string()
