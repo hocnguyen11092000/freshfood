@@ -169,7 +169,7 @@ const CheckOut = (props: Props) => {
             Thank for your order
           </p>
           <div style={{ textAlign: "center" }}>
-            <Link to="/">
+            <Link to="/account">
               <button
                 style={{
                   padding: "8px 10px",
@@ -182,7 +182,7 @@ const CheckOut = (props: Props) => {
                   cursor: "pointer",
                 }}
               >
-                Go back home
+                View order details
               </button>
             </Link>
           </div>
