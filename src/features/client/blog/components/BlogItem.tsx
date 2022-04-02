@@ -20,7 +20,7 @@ const BlogItem = (props: Props) => {
             alt={item?.title}
             width="100%"
             height="100%"
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "contain", maxHeight: "150px" }}
           />
         </Link>
       </Grid>

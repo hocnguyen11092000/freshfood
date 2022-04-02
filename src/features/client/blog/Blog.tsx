@@ -66,7 +66,7 @@ const BlogPage = (props: Props) => {
       <Header ref={headerRef} onChange={handleChangeMobileSidebar}></Header>
       <div className="blog">
         <Grid container spacing={4}>
-          <Grid item md={4} sm={12} xs={12}>
+          <Grid item lg={4} md={5} sm={12} xs={12}>
             <div className="blog__newPosts">
               <h3 className="blog__newPosts-heading">New Posts</h3>
               <ul className="blog__newPosts-list">
@@ -155,7 +155,7 @@ const BlogPage = (props: Props) => {
               </ul>
             </div>
           </Grid>
-          <Grid item md={8} sm={12} xs={12}>
+          <Grid item lg={8} md={7} sm={12} xs={12}>
             <div className="blog__all">
               <Typography component="h3">Blogs</Typography>
               <Box>
