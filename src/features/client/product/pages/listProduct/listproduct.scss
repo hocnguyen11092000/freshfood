@@ -48,8 +48,8 @@
   margin: 10px 0;
 }
 
-@media screen and (max-width: 600px) {
-  .MuiPagination-ul.css-wjh20t-MuiPagination-ul {
-    flex-direction: column;
+@media screen and (max-width: 480px) {
+  .css-1oj2twp-MuiPagination-root {
+    width: 500px;
   }
 }
