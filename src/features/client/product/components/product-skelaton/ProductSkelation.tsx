@@ -14,8 +14,8 @@ const ProductSkelation = (props: Props) => {
             <div
               style={{
                 marginBottom: "20px",
-                maxHeight: "265px",
-                height: "265px",
+                maxHeight: "276px",
+                height: "276px",
                 width: "100%",
               }}
             >
