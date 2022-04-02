@@ -2,10 +2,13 @@
   margin-bottom: 20px;
   border: 1px solid #ccc;
   padding: 20px;
-  height: 256px;
-  max-height: 256px;
+  height: 276px;
+  max-height: 276px;
   cursor: pointer;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   &__price {
     margin: 10px 0 5px 0;
