@@ -10,7 +10,7 @@ const ProductSkelation = (props: Props) => {
     <>
       {Array.from(new Array(8)).map((_, index: number) => {
         return (
-          <Grid item xs={12} sm={4} md={3} key={index}>
+          <Grid item xs={12} sm={4} md={4} lg={3} key={index}>
             <div
               style={{
                 marginBottom: "20px",

@@ -113,10 +113,11 @@
       &-img {
         width: 100%;
         position: relative;
+        height: 220px;
 
         img {
           width: 100%;
-          object-fit: cover;
+          object-fit: contain;
           height: 215px;
         }
 

@@ -126,7 +126,7 @@ const ListProduct = (props: Props) => {
       >
         <Box className="list-product">
           <Grid container spacing={1}>
-            <Grid item md={3} sm={12} xs={12}>
+            <Grid item lg={3} md={12} sm={12} xs={12}>
               <Paper elevation={0} sx={{ padding: "20px" }}>
                 <div onClick={handleResetFilter} className="reset">
                   All product
@@ -166,14 +166,14 @@ const ListProduct = (props: Props) => {
                 </Typography>
               </Paper>
             </Grid>
-            <Grid item md={9} sm={12} xs={12}>
+            <Grid item lg={9} md={12} sm={12} xs={12}>
               <Paper elevation={0} sx={{ padding: "20px" }}>
                 <Grid container>
                   {isLoading && <ProductSkelation></ProductSkelation>}
                   {data &&
                     dataProducts.map((item: Product, index: number) => {
                       return (
-                        <Grid item xs={12} sm={4} md={3} key={index}>
+                        <Grid item xs={12} sm={4} md={4} lg={3} key={index}>
                           <ProductItem item={item}></ProductItem>
                         </Grid>
                       );

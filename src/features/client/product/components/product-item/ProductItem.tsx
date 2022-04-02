@@ -18,12 +18,10 @@ const ProductItem = (props: Props) => {
 
   return (
     <div className="product-item" onClick={() => handleClick(item?._id)}>
-      <img
-        className="product-item__img"
-        src={item.images[0].url}
-        alt=""
-        width="80%"
-      />
+      <div className="product-item__img">
+        <img src={item.images[0].url} alt="" />
+      </div>
+
       <p className="product-item__price">Giá: {item.price}.000đ</p>
       <p className="product-item__name">{item.name}</p>
     </div>
