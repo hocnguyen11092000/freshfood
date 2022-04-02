@@ -47,6 +47,7 @@ const ListProduct = (props: Props) => {
   });
 
   const handleChange = (event: any, value: any) => {
+    window.scroll({ top: 0, behavior: "smooth" });
     setPage(value);
     setFilter({
       ...filter,

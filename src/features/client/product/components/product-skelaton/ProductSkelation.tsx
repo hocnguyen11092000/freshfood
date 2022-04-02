@@ -14,23 +14,13 @@ const ProductSkelation = (props: Props) => {
             <div
               style={{
                 marginBottom: "20px",
-                maxHeight: "276px",
-                height: "276px",
                 width: "100%",
+                height: "100%",
               }}
             >
-              <Skeleton
-                variant="rectangular"
-                width={"95%"}
-                height={210}
-                sx={{ marginBottom: "10px" }}
-              />
-              <Skeleton
-                variant="text"
-                width={"95%"}
-                sx={{ marginBottom: "10px" }}
-              />
-              <Skeleton variant="text" width={"95%"} />
+              <Skeleton variant="rectangular" width={"95%"} height={215} />
+              <Skeleton variant="text" width={"95%"} height={40} />
+              <Skeleton variant="text" width={"95%"} height={35} />
             </div>
           </Grid>
         );
