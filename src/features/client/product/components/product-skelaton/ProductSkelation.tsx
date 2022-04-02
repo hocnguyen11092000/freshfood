@@ -22,7 +22,7 @@ const ProductSkelation = (props: Props) => {
               <Skeleton
                 variant="rectangular"
                 width={"95%"}
-                height={200}
+                height={210}
                 sx={{ marginBottom: "10px" }}
               />
               <Skeleton
