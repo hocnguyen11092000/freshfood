@@ -10,16 +10,14 @@ if (tokenLocal) {
 const axiosClient = axios.create({
   baseURL: "https://orchid.tk/api/v1",
   withCredentials: true,
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${tokenLocal}`, //the token is a variable which holds the token
-  },
 });
 
 // Add a request interceptor
 axiosClient.interceptors.request.use(
   function (config: AxiosRequestConfig) {
-    // Do something before request is sent
+    if (config.headers) {
+      config.headers.Authorization = `Bearer ${getToken() || tokenLocal}`;
+    }
     return config;
   },
   function (error) {

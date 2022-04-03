@@ -1,6 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import userApi from "api/userApi";
+import orderApi from "api/orderApi";
 import { useAppSelector, useAppDispatch } from "app/hooks";
 import axios from "axios";
 import Footer from "components/Common/footer/Footer";
@@ -53,13 +53,15 @@ const Account = (props: Props) => {
       }
       setOrderLoading(true);
       try {
-        const res = await axios.get("https://orchid.tk/api/v1/orders/me", {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${tokenLocal}`, //the token is a variable which holds the token
-          },
-        });
-        setOrderList(res.data.orders);
+        // const res = await axios.get("https://orchid.tk/api/v1/orders/me", {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //     Authorization: `Bearer ${tokenLocal}`, //the token is a variable which holds the token
+        //   },
+        // });
+        const res = await orderApi.getMyOrders();
+
+        setOrderList(res.orders);
         setOrderLoading(false);
       } catch (error) {
         console.log(error);

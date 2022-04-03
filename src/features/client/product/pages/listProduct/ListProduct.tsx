@@ -3,8 +3,6 @@ import productApi from "api/productApi";
 import Footer from "components/Common/footer/Footer";
 import Header from "components/Common/header/Header";
 import SidebarMobile from "components/Common/sidebarMobile/SidebarMobile";
-import { descData } from "features/admin/Home/pages/Home";
-import { getBrowserWidth } from "features/client/Home/components/HomeSkeleton";
 import Category from "features/client/product/components/filter/category/Category";
 import SearchProduct, {
   SearchValue,
@@ -73,7 +71,7 @@ const ListProduct = (props: Props) => {
     count = Math.ceil(data?.productCount / 8);
   }
 
-  const dataProducts = descData(data?.products);
+  const dataProducts = data?.products;
 
   const handleSubmit = (value: SearchValue) => {
     setFilter({

@@ -1,12 +1,12 @@
 .product-item {
   margin-bottom: 20px;
-  padding: 15px;
+  padding: 20px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: 0.3s ease;
-  border-radius: 5px;
+  border-radius: 10px;
 
   &:hover {
     box-shadow: rgb(0 0 0 / 10%) 0px 0px 20px;

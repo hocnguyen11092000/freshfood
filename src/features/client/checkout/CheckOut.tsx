@@ -63,16 +63,7 @@ const CheckOut = (props: Props) => {
       if (tokenLocal) {
         tokenLocal = JSON.stringify(tokenLocal);
       }
-      const res: any = await axios.post(
-        "https://orchid.tk/api/v1/order/new",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${tokenLocal}`, //the token is a variable which holds the token
-          },
-        }
-      );
+      await orderApi.add(data);
       Cookies.remove("cartItems");
 
       dispatch(cartActions.clearCart());
